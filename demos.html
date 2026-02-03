@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos — BaltimoreAI</title>
+    <meta name="description" content="See BaltimoreAI's capabilities in action: interactive demos, video walkthroughs, and real case studies.">
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --baltimore-orange: #FF6B35;
+            --baltimore-orange-hover: #ff8c61;
+            --baltimore-black: #0F0F0F;
+            --card-bg: #1A1A1A;
+            --steel-blue: #2C5F7C;
+            --steel-glow: rgba(44, 95, 124, 0.4);
+            --white: #ffffff;
+            --text-gray: #cccccc;
+        }
+
+        /* --- GLOBAL RESET --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+            background-color: var(--baltimore-black);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--white);
+        }
+
+        a { color: inherit; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0 2rem;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .navbar-brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand span { color: var(--baltimore-orange); }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .navbar-links a:hover,
+        .navbar-links a.active { color: var(--white); }
+
+        .navbar-links a.nav-cta {
+            background: var(--baltimore-orange);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .navbar-links a.nav-cta:hover {
+            background: var(--baltimore-orange-hover);
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* --- SHARED LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(to right, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight { color: var(--baltimore-orange); font-weight: 700; }
+
+        /* --- PAGE HERO --- */
+        .page-hero {
+            background: radial-gradient(circle at 50% 0%, var(--steel-blue), var(--baltimore-black) 70%);
+            color: var(--white);
+            padding: 150px 2rem 70px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #ccc;
+        }
+
+        /* --- SECTION DIVIDER --- */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .section-label .label-tag {
+            flex-shrink: 0;
+            background: rgba(44, 95, 124, 0.2);
+            color: #7ab0d1;
+            border: 1px solid rgba(44, 95, 124, 0.5);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-label .label-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, #333, transparent);
+        }
+
+        /* --- INTERACTIVE DEMOS --- */
+        .demos-section { padding: 0 2rem; }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-card:hover {
+            border-color: #444;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .demo-preview {
+            position: relative;
+            background: #111;
+            aspect-ratio: 16 / 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Placeholder for iframe or screenshot */
+        .demo-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .demo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #555;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+        }
+
+        .demo-placeholder .placeholder-icon {
+            width: 48px;
+            height: 48px;
+            border: 2px solid #333;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .demo-placeholder span {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .demo-status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .demo-status.live {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .demo-status.coming-soon {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--baltimore-orange);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .demo-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .demo-body p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #aaa;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .demo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .demo-tags span {
+            background: rgba(255, 255, 255, 0.05);
+            color: #888;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .demo-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--baltimore-orange);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .demo-link:hover { color: var(--baltimore-orange-hover); }
+
+        /* --- VIDEO SECTION --- */
+        .videos-section { padding: 0 2rem; }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .video-card:hover {
+            border-color: #444;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            background: #111;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-embed .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            cursor: pointer;
+        }
+
+        .play-button {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 107, 53, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .play-button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent white;
+            margin-left: 4px;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.1);
+            background: var(--baltimore-orange);
+        }
+
+        .video-info {
+            padding: 20px 24px;
+        }
+
+        .video-info h3 {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .video-duration {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* --- CASE STUDIES --- */
+        .cases-section { padding: 0 2rem; }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-card {
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            border-color: #444;
+            background: #1e1e1e;
+        }
+
+        .case-content { display: flex; flex-direction: column; gap: 12px; }
+
+        .case-industry {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--baltimore-orange);
+            border: 1px solid rgba(255, 107, 53, 0.25);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            align-self: flex-start;
+        }
+
+        .case-content h3 {
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+
+        .case-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #aaa;
+        }
+
+        .case-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 16px 20px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--baltimore-orange);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--steel-blue) 0%, #1a3c52 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            -webkit-text-fill-color: var(--white);
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 28px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--baltimore-orange) 0%, #ff4500 100%);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.5);
+            color: white;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: transparent;
+            color: #666;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover { color: var(--baltimore-orange); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.2rem; }
+            .page-hero { padding-top: 120px; }
+            .container { padding: 80px 20px 60px; }
+            .section-title { margin-bottom: 60px; }
+            .demo-grid, .video-grid { grid-template-columns: 1fr; }
+
+            .case-card {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 28px;
+            }
+
+            .case-metrics {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .metric { flex: 1; min-width: 120px; }
+
+            .menu-toggle { display: block; }
+
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(15, 15, 15, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+
+            .navbar-links.open { display: flex; }
+
+            .cta-banner { margin: 0 20px; padding: 40px 24px; }
+            .cta-banner h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">Baltimore<span>AI</span></a>
+            <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.navbar-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="demos.html" class="active">Demos</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <h1>See It In Action</h1>
+        <p>Interactive demos, video walkthroughs, and real results from our work with Baltimore organizations.</p>
+    </section>
+
+    <!-- INTERACTIVE DEMOS -->
+    <section class="demos-section">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-tag">Interactive</span>
+                <div class="label-line"></div>
+            </div>
+
+            <div class="demo-grid">
+
+                <div class="demo-card">
+                    <div class="demo-preview">
+                        <div class="demo-placeholder">
+                            <div class="placeholder-icon">&#128172;</div>
+                            <span>Live Chat Interface</span>
+                        </div>
+                        <span class="demo-status live">Live</span>
+                    </div>
+                    <div class="demo-body">
+                        <h3>RAG Knowledge Assistant</h3>
+                        <p>Ask questions against a sample policy document set. The AI retrieves relevant passages and generates accurate answers with source citations.</p>
+                        <div class="demo-tags">
+                            <span>LLM</span>
+                            <span>Retrieval</span>
+                            <span>Vector Search</span>
+                        </div>
+                        <a href="#" class="demo-link">Try the demo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-preview">
+                        <div class="demo-placeholder">
+                            <div class="placeholder-icon">&#128196;</div>
+                            <span>Document Upload</span>
+                        </div>
+                        <span class="demo-status live">Live</span>
+                    </div>
+                    <div class="demo-body">
+                        <h3>Document Processor</h3>
+                        <p>Upload a PDF and watch it get parsed into structured data — tables extracted, key fields identified, and content made searchable.</p>
+                        <div class="demo-tags">
+                            <span>OCR</span>
+                            <span>Extraction</span>
+                            <span>PDF</span>
+                        </div>
+                        <a href="#" class="demo-link">Try the demo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-preview">
+                        <div class="demo-placeholder">
+                            <div class="placeholder-icon">&#9881;</div>
+                            <span>Workflow Builder</span>
+                        </div>
+                        <span class="demo-status coming-soon">Coming Soon</span>
+                    </div>
+                    <div class="demo-body">
+                        <h3>Automation Pipeline</h3>
+                        <p>See how we chain AI steps together: intake, classify, extract, route, and notify — all running autonomously.</p>
+                        <div class="demo-tags">
+                            <span>Orchestration</span>
+                            <span>API</span>
+                            <span>Automation</span>
+                        </div>
+                        <a href="#" class="demo-link">Notify me &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO WALKTHROUGHS -->
+    <section class="videos-section">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-tag">Video</span>
+                <div class="label-line"></div>
+            </div>
+
+            <div class="video-grid">
+
+                <div class="video-card">
+                    <div class="video-embed">
+                        <!-- Replace data-video-id with your YouTube ID -->
+                        <div class="video-placeholder" data-video-id="YOUR_VIDEO_ID_1">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Building a RAG System for Local Government</h3>
+                        <p>How we turned 10 years of city meeting minutes into an instant-answer knowledge base.</p>
+                        <div class="video-duration">12 min</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-embed">
+                        <div class="video-placeholder" data-video-id="YOUR_VIDEO_ID_2">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Document Processing at Scale</h3>
+                        <p>Processing thousands of medical forms into structured, searchable records.</p>
+                        <div class="video-duration">8 min</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-embed">
+                        <div class="video-placeholder" data-video-id="YOUR_VIDEO_ID_3">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>AI Strategy Workshop Overview</h3>
+                        <p>What to expect from our assessment process and how we identify high-impact opportunities.</p>
+                        <div class="video-duration">6 min</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="cases-section">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-tag">Case Studies</span>
+                <div class="label-line"></div>
+            </div>
+
+            <div class="case-grid">
+
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="case-industry">Healthcare</span>
+                        <h3>Automated Patient Intake Processing</h3>
+                        <p>A Baltimore-area medical practice was spending staff hours manually entering data from intake forms. We built an AI pipeline that extracts structured data from scanned forms and populates their EHR system directly.</p>
+                    </div>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">85%</div>
+                            <div class="metric-label">Less Manual Entry</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3x</div>
+                            <div class="metric-label">Faster Processing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="case-industry">Government</span>
+                        <h3>Public Records Knowledge Base</h3>
+                        <p>A county agency needed staff to search through years of meeting minutes and policy documents to answer constituent questions. We deployed a RAG-based assistant that provides instant, cited answers from their full document archive.</p>
+                    </div>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">10k+</div>
+                            <div class="metric-label">Documents Indexed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">&lt;5s</div>
+                            <div class="metric-label">Avg. Response Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-content">
+                        <span class="case-industry">Manufacturing</span>
+                        <h3>Synthetic Test Data for QA</h3>
+                        <p>A regional manufacturer needed to validate product designs across edge-case scenarios without running expensive physical tests. We generated synthetic datasets simulating thousands of stress conditions, helping them identify failure points before production.</p>
+                    </div>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">5,000+</div>
+                            <div class="metric-label">Scenarios Tested</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">40%</div>
+                            <div class="metric-label">Cost Reduction</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding: 0 2rem 120px;">
+        <div class="container" style="padding-bottom: 0;">
+            <div class="cta-banner">
+                <h2>Want to see what this looks like for your business?</h2>
+                <p>Book a free 30-minute call. We'll map your workflows and show you where AI fits.</p>
+                <a href="index.html#contact" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Kimura Consulting LLC | <a href="https://baltimoreai.org">BaltimoreAI.org</a><br>Serving Baltimore, Maryland</p>
+    </footer>
+
+    <script>
+        // Lazy-load YouTube videos on click
+        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                const videoId = this.dataset.videoId;
+                if (videoId && videoId !== 'YOUR_VIDEO_ID_1' && videoId !== 'YOUR_VIDEO_ID_2' && videoId !== 'YOUR_VIDEO_ID_3') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                    iframe.allowFullscreen = true;
+                    this.parentElement.replaceChild(iframe, this);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
