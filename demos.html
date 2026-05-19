@@ -432,24 +432,24 @@
     </nav>
 
     <section class="hero">
-        <h1>What "knowing" looks like.</h1>
-        <p>Three demos on a creative-writing test set, so the data is easy to follow. Same pipeline runs on your app, with your data, scored on what matters to you.</p>
+        <h1>Three real engagements.</h1>
+        <p>Pulled from work we've done in medical data, customer service, and scientific research. Names and exact numbers anonymized. Shapes, failure modes, and gains are real.</p>
     </section>
 
     <div class="container">
 
-        <!-- DEMO 1: RAG over a fictional wiki -->
+        <!-- DEMO 1: Medical -->
         <div class="demo">
             <div class="demo-header">
-                <span class="demo-number">Demo 01</span>
-                <h2>RAG over a fictional fantasy wiki</h2>
+                <span class="demo-number">Demo 01 · Medical data</span>
+                <h2>Clinical-protocol assistant for a multi-site research group</h2>
             </div>
-            <p class="demo-sub">A made-up lore wiki ("The Reach of Halmar"). 240 questions in a golden set. We try four versions of the retrieval + prompt. The verify gate blocks the fifth.</p>
+            <p class="demo-sub">A RAG assistant over ~3,400 internal protocols, SOPs, and recent literature. Used by study coordinators and clinicians. Golden set: 420 questions, answers reviewed by an MD. Cheap embedder swap looked free until we measured it.</p>
 
             <div class="tool">
                 <div class="tool-bar">
                     <div class="dots"><span></span><span></span><span></span></div>
-                    <span class="label">mlflow · experiment: halmar-rag · 5 runs</span>
+                    <span class="label">mlflow · experiment: protocol-assistant · 5 runs</span>
                 </div>
                 <div class="tool-body">
                     <table class="runs-table">
@@ -458,185 +458,197 @@
                                 <th>Run</th>
                                 <th>Change</th>
                                 <th>Faithfulness</th>
-                                <th>Context Recall</th>
-                                <th>Answer Relevancy</th>
-                                <th>Latency (p50)</th>
+                                <th>Citation accuracy</th>
+                                <th>Refusal (out-of-scope)</th>
+                                <th>PHI leak flags</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="run-id">v1</td>
-                                <td>baseline · k=4, naive prompt</td>
-                                <td>0.62</td>
-                                <td>0.58</td>
-                                <td>0.71</td>
-                                <td>1.4s</td>
+                                <td>baseline · k=5, naive prompt</td>
+                                <td>0.68</td>
+                                <td>0.54</td>
+                                <td>0.41</td>
+                                <td>7</td>
                                 <td><span class="badge info">baseline</span></td>
                             </tr>
                             <tr>
                                 <td class="run-id">v2</td>
-                                <td>k=8, dedupe chunks</td>
-                                <td>0.71 <span class="delta-up">▲ +0.09</span></td>
-                                <td>0.74 <span class="delta-up">▲ +0.16</span></td>
-                                <td>0.73 <span class="delta-up">▲ +0.02</span></td>
-                                <td>1.6s</td>
+                                <td>add document-type filter + section anchors</td>
+                                <td>0.79 <span class="delta-up">▲ +0.11</span></td>
+                                <td>0.81 <span class="delta-up">▲ +0.27</span></td>
+                                <td>0.62 <span class="delta-up">▲ +0.21</span></td>
+                                <td>3 <span class="delta-up">▼ -4</span></td>
                                 <td><span class="badge good">passed</span></td>
                             </tr>
                             <tr>
                                 <td class="run-id">v3</td>
-                                <td>add HyDE rewrite step</td>
-                                <td>0.78 <span class="delta-up">▲ +0.07</span></td>
-                                <td>0.79 <span class="delta-up">▲ +0.05</span></td>
-                                <td>0.81 <span class="delta-up">▲ +0.08</span></td>
-                                <td>2.1s</td>
+                                <td>add "I don't know" calibration step</td>
+                                <td>0.84 <span class="delta-up">▲ +0.05</span></td>
+                                <td>0.86 <span class="delta-up">▲ +0.05</span></td>
+                                <td>0.88 <span class="delta-up">▲ +0.26</span></td>
+                                <td>1 <span class="delta-up">▼ -2</span></td>
                                 <td><span class="badge good">passed</span></td>
                             </tr>
                             <tr class="winner">
                                 <td class="run-id">v4</td>
-                                <td>HyDE + rerank top-20→4</td>
-                                <td>0.84 <span class="delta-up">▲ +0.06</span></td>
-                                <td>0.88 <span class="delta-up">▲ +0.09</span></td>
-                                <td>0.86 <span class="delta-up">▲ +0.05</span></td>
-                                <td>2.4s</td>
+                                <td>rerank top-30 → 5, prefer canonical SOP</td>
+                                <td>0.91 <span class="delta-up">▲ +0.07</span></td>
+                                <td>0.93 <span class="delta-up">▲ +0.07</span></td>
+                                <td>0.91 <span class="delta-up">▲ +0.03</span></td>
+                                <td>0 <span class="delta-up">▼ -1</span></td>
                                 <td><span class="badge good">✓ promoted</span></td>
                             </tr>
                             <tr class="blocked">
                                 <td class="run-id">v5</td>
-                                <td>switch embedder (cheaper)</td>
-                                <td>0.83 <span class="delta-down">▼ -0.01</span></td>
-                                <td>0.69 <span class="delta-down">▼ -0.19</span></td>
-                                <td>0.82 <span class="delta-down">▼ -0.04</span></td>
-                                <td>1.9s</td>
+                                <td>switch to cheaper open-source embedder</td>
+                                <td>0.89 <span class="delta-down">▼ -0.02</span></td>
+                                <td>0.74 <span class="delta-down">▼ -0.19</span></td>
+                                <td>0.83 <span class="delta-down">▼ -0.08</span></td>
+                                <td>2 <span class="delta-down">▲ +2</span></td>
                                 <td><span class="badge bad">✗ blocked</span></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="metric-strip">
-                        <div class="cell"><div class="k">Best run</div><div class="v">v4 <span class="d up">↑</span></div></div>
-                        <div class="cell"><div class="k">Faithfulness gain</div><div class="v">+0.22 <span class="d up">↑</span></div></div>
-                        <div class="cell"><div class="k">Recall gain</div><div class="v">+0.30 <span class="d up">↑</span></div></div>
-                        <div class="cell"><div class="k">Regressions blocked</div><div class="v">1</div></div>
+                        <div class="cell"><div class="k">Faithfulness</div><div class="v">0.91 <span class="d up">↑ +0.23</span></div></div>
+                        <div class="cell"><div class="k">Citation accuracy</div><div class="v">0.93 <span class="d up">↑ +0.39</span></div></div>
+                        <div class="cell"><div class="k">Refusal on out-of-scope</div><div class="v">0.91 <span class="d up">↑ +0.50</span></div></div>
+                        <div class="cell"><div class="k">PHI leak flags caught</div><div class="v">1 (v5)</div></div>
                     </div>
                 </div>
             </div>
 
             <div class="takeaway">
-                <b>What you're looking at:</b> Four real changes, four scores. v5 looked fine on overall accuracy but recall dropped 0.19 — the verify gate caught it. Without this, you'd ship v5 to save money and quietly break a chunk of users.
+                <b>What you're looking at:</b> Four real changes moved citation accuracy from 54% to 93% and got refusal-when-unsure to where the MDs trusted it. v5 was an "easy cost win" — same overall faithfulness, way cheaper embedder — but citation accuracy collapsed 19 points and two PHI flags came back. Verify gate blocked it. Without the gate, nobody would've noticed until someone cited the wrong protocol on a patient.
             </div>
         </div>
 
-        <!-- DEMO 2: Story critique bot -->
+        <!-- DEMO 2: Customer service -->
         <div class="demo">
             <div class="demo-header">
-                <span class="demo-number">Demo 02</span>
-                <h2>Story critique bot</h2>
+                <span class="demo-number">Demo 02 · Customer service</span>
+                <h2>Support-triage agent for a B2B SaaS team</h2>
             </div>
-            <p class="demo-sub">A bot that grades short fiction on a rubric. Before: free-form responses, no scoring. After: a Pydantic-typed rubric, judge model, and a golden set of 120 stories with known scores.</p>
+            <p class="demo-sub">An agent that triages incoming tickets, drafts a reply when it can, and escalates when it can't. ~14k tickets/month, three product lines. Golden set: 800 historical tickets with the resolution a senior rep actually took.</p>
 
             <div class="tool">
                 <div class="tool-bar">
                     <div class="dots"><span></span><span></span><span></span></div>
-                    <span class="label">deepeval · run: critique-bot · before / after</span>
+                    <span class="label">deepeval · run: triage-agent · before / after</span>
                 </div>
                 <div class="tool-body">
                     <div class="rubric-grid">
                         <div class="rubric-col">
-                            <h4>// before — v1 (free text)</h4>
-                            <div class="rubric-row"><span class="name">Pacing identified correctly</span><span class="score">0.41</span></div>
-                            <div class="rubric-row"><span class="name">Character motivation flagged</span><span class="score">0.55</span></div>
-                            <div class="rubric-row"><span class="name">Show-vs-tell calls match human</span><span class="score">0.38</span></div>
-                            <div class="rubric-row"><span class="name">Cited the right paragraph</span><span class="score">0.22</span></div>
-                            <div class="rubric-row"><span class="name">Output parses cleanly</span><span class="score">0.61</span></div>
-                            <div class="rubric-row"><span class="name">Avg agreement w/ human judge</span><span class="score">0.43</span></div>
+                            <h4>// before — v1 (one prompt, no eval loop)</h4>
+                            <div class="rubric-row"><span class="name">Resolution accepted by senior rep</span><span class="score">0.51</span></div>
+                            <div class="rubric-row"><span class="name">Hit the right KB article</span><span class="score">0.46</span></div>
+                            <div class="rubric-row"><span class="name">Fired the right macro / action</span><span class="score">0.39</span></div>
+                            <div class="rubric-row"><span class="name">Escalated when a human would</span><span class="score">0.58</span></div>
+                            <div class="rubric-row"><span class="name">Didn't escalate when human wouldn't</span><span class="score">0.78</span></div>
+                            <div class="rubric-row"><span class="name">Tone matches brand voice</span><span class="score">0.63</span></div>
                         </div>
                         <div class="rubric-col">
-                            <h4>// after — v3 (typed rubric + judge)</h4>
-                            <div class="rubric-row"><span class="name">Pacing identified correctly</span><span class="score up">0.79 ▲</span></div>
-                            <div class="rubric-row"><span class="name">Character motivation flagged</span><span class="score up">0.83 ▲</span></div>
-                            <div class="rubric-row"><span class="name">Show-vs-tell calls match human</span><span class="score up">0.71 ▲</span></div>
-                            <div class="rubric-row"><span class="name">Cited the right paragraph</span><span class="score up">0.86 ▲</span></div>
-                            <div class="rubric-row"><span class="name">Output parses cleanly</span><span class="score up">1.00 ▲</span></div>
-                            <div class="rubric-row"><span class="name">Avg agreement w/ human judge</span><span class="score up">0.82 ▲</span></div>
+                            <h4>// after — v4 (typed schema + judge + tuning loop)</h4>
+                            <div class="rubric-row"><span class="name">Resolution accepted by senior rep</span><span class="score up">0.79 ▲</span></div>
+                            <div class="rubric-row"><span class="name">Hit the right KB article</span><span class="score up">0.88 ▲</span></div>
+                            <div class="rubric-row"><span class="name">Fired the right macro / action</span><span class="score up">0.84 ▲</span></div>
+                            <div class="rubric-row"><span class="name">Escalated when a human would</span><span class="score up">0.91 ▲</span></div>
+                            <div class="rubric-row"><span class="name">Didn't escalate when human wouldn't</span><span class="score up">0.94 ▲</span></div>
+                            <div class="rubric-row"><span class="name">Tone matches brand voice</span><span class="score up">0.86 ▲</span></div>
                         </div>
                     </div>
                     <div class="metric-strip">
-                        <div class="cell"><div class="k">Human agreement</div><div class="v">0.82 <span class="d up">↑ +0.39</span></div></div>
-                        <div class="cell"><div class="k">Parse failures</div><div class="v">0% <span class="d up">↓ from 39%</span></div></div>
-                        <div class="cell"><div class="k">Citations correct</div><div class="v">86% <span class="d up">↑ from 22%</span></div></div>
-                        <div class="cell"><div class="k">Cost per critique</div><div class="v">$0.011 <span class="d down">↑ +$0.004</span></div></div>
+                        <div class="cell"><div class="k">Auto-resolved</div><div class="v">42% <span class="d up">↑ from 18%</span></div></div>
+                        <div class="cell"><div class="k">False escalations</div><div class="v">6% <span class="d up">↓ from 22%</span></div></div>
+                        <div class="cell"><div class="k">Rep-hours saved / wk</div><div class="v">~58 <span class="d up">↑</span></div></div>
+                        <div class="cell"><div class="k">Avg cost per ticket</div><div class="v">$0.07 <span class="d up">↓ vs $1.40 human</span></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="takeaway">
-                <b>What you're looking at:</b> Same bot, same model, same stories. Adding a typed rubric and an LLM-as-judge brought it from "kinda useful" to "matches a human editor 82% of the time." Costs a fraction of a cent more per critique.
+                <b>What you're looking at:</b> The "before" agent was the team's first crack — one big prompt, no scoring. Looked fine in spot-checks. Once we scored against 800 real tickets, resolution acceptance was 51% and a fifth of escalations were noise the senior reps had to ignore. After four tuning rounds against the same set, 79% of drafts get accepted as-is and false escalations dropped to 6%. The team kept the same model and the same product.
             </div>
         </div>
 
-        <!-- DEMO 3: Outline → draft → revise agent -->
+        <!-- DEMO 3: Science -->
         <div class="demo">
             <div class="demo-header">
-                <span class="demo-number">Demo 03</span>
-                <h2>Outline → draft → revise writing agent</h2>
+                <span class="demo-number">Demo 03 · Scientific research</span>
+                <h2>Literature-extraction agent for an R&amp;D group</h2>
             </div>
-            <p class="demo-sub">A 3-step LangGraph agent for short fiction. Each node has its own score. When the whole thing is bad, you can see which step broke it.</p>
+            <p class="demo-sub">A LangGraph agent reads peer-reviewed papers and pulls structured findings — design, sample size, effect size, methods, limitations — into a Pydantic schema. Built for a team doing a 1,200-paper review by hand. Each node scored against gold annotations from two domain reviewers.</p>
 
             <div class="tool">
                 <div class="tool-bar">
                     <div class="dots"><span></span><span></span><span></span></div>
-                    <span class="label">langgraph · trace: short-story-agent · run #218</span>
+                    <span class="label">langgraph · trace: lit-extract · run #1142 · paper: TR-2487</span>
                 </div>
                 <div class="tool-body">
                     <div class="trace">
                         <div class="trace-row">
                             <div class="trace-dot"></div>
                             <div>
-                                <div class="trace-node">outline_node</div>
-                                <div class="trace-detail">Generates a 5-beat outline from the prompt.</div>
+                                <div class="trace-node">parse_paper</div>
+                                <div class="trace-detail">Splits PDF into sections (abstract, methods, results, discussion). Pydantic-validated.</div>
                             </div>
                             <div class="trace-metrics">
-                                <div class="m"><span class="k">beats present</span><span class="v good">5 / 5</span></div>
-                                <div class="m"><span class="k">premise faithfulness</span><span class="v good">0.91</span></div>
-                                <div class="m"><span class="k">latency</span><span class="v">0.8s</span></div>
+                                <div class="m"><span class="k">sections found</span><span class="v good">7 / 7</span></div>
+                                <div class="m"><span class="k">schema valid</span><span class="v good">true</span></div>
+                                <div class="m"><span class="k">latency</span><span class="v">1.2s</span></div>
                             </div>
                         </div>
                         <div class="trace-row">
                             <div class="trace-dot"></div>
                             <div>
-                                <div class="trace-node">draft_node</div>
-                                <div class="trace-detail">Expands each beat into prose. Tool-calls the style guide.</div>
+                                <div class="trace-node">extract_design</div>
+                                <div class="trace-detail">Study design, n, population, intervention, controls.</div>
                             </div>
                             <div class="trace-metrics">
-                                <div class="m"><span class="k">beat coverage</span><span class="v good">0.94</span></div>
-                                <div class="m"><span class="k">style-guide hits</span><span class="v good">4 / 4</span></div>
-                                <div class="m"><span class="k">latency</span><span class="v">3.4s</span></div>
+                                <div class="m"><span class="k">fields vs gold</span><span class="v good">5 / 5</span></div>
+                                <div class="m"><span class="k">judge score</span><span class="v good">0.94</span></div>
+                                <div class="m"><span class="k">latency</span><span class="v">2.1s</span></div>
+                            </div>
+                        </div>
+                        <div class="trace-row">
+                            <div class="trace-dot"></div>
+                            <div>
+                                <div class="trace-node">extract_results</div>
+                                <div class="trace-detail">Effect sizes, p-values, confidence intervals. Units checked.</div>
+                            </div>
+                            <div class="trace-metrics">
+                                <div class="m"><span class="k">fields vs gold</span><span class="v good">8 / 8</span></div>
+                                <div class="m"><span class="k">unit checks</span><span class="v good">pass</span></div>
+                                <div class="m"><span class="k">latency</span><span class="v">3.0s</span></div>
                             </div>
                         </div>
                         <div class="trace-row">
                             <div class="trace-dot" style="background: var(--bad);"></div>
                             <div>
-                                <div class="trace-node">revise_node <span class="badge bad" style="margin-left:8px;">regressed</span></div>
-                                <div class="trace-detail">Re-reads draft, applies edits. <b>This run cut the ending.</b></div>
+                                <div class="trace-node">extract_limitations <span class="badge bad" style="margin-left:8px;">hallucination</span></div>
+                                <div class="trace-detail">Pulls stated limitations. <b>This run invented a sample-size caveat that wasn't in the paper.</b></div>
                             </div>
                             <div class="trace-metrics">
-                                <div class="m"><span class="k">edit distance</span><span class="v">0.34</span></div>
-                                <div class="m"><span class="k">ending intact</span><span class="v bad">false</span></div>
-                                <div class="m"><span class="k">final story score</span><span class="v bad">0.51</span></div>
+                                <div class="m"><span class="k">fields vs gold</span><span class="v bad">3 / 4</span></div>
+                                <div class="m"><span class="k">unsupported claim</span><span class="v bad">1</span></div>
+                                <div class="m"><span class="k">groundedness</span><span class="v bad">0.62</span></div>
                             </div>
                         </div>
                     </div>
                     <div class="metric-strip">
-                        <div class="cell"><div class="k">Whole-run score</div><div class="v">0.51 <span class="d down">↓ from 0.78</span></div></div>
-                        <div class="cell"><div class="k">Failing node</div><div class="v" style="font-size:1rem;">revise_node</div></div>
-                        <div class="cell"><div class="k">Suspected cause</div><div class="v" style="font-size:0.95rem;">over-trimming</div></div>
-                        <div class="cell"><div class="k">Gate</div><div class="v" style="font-size:1rem; color: var(--bad);">✗ blocked</div></div>
+                        <div class="cell"><div class="k">Whole-paper score</div><div class="v">0.81 <span class="d down">↓ from 0.94</span></div></div>
+                        <div class="cell"><div class="k">Failing node</div><div class="v" style="font-size:1rem;">extract_limitations</div></div>
+                        <div class="cell"><div class="k">Cause</div><div class="v" style="font-size:0.95rem;">unsupported caveat</div></div>
+                        <div class="cell"><div class="k">Gate</div><div class="v" style="font-size:1rem; color: var(--bad);">✗ flagged for review</div></div>
                     </div>
                 </div>
             </div>
 
             <div class="takeaway">
-                <b>What you're looking at:</b> The outline was fine. The draft was fine. The revise step lopped off the ending — and the per-node scores tell you exactly that. Without this, you'd see "bad story" and start guessing.
+                <b>What you're looking at:</b> Three of the four extraction steps were solid against two-reviewer gold. The limitations node hallucinated a caveat that wasn't in the paper — exactly the kind of error that would slip past an overworked reviewer and into a meta-analysis. Per-node scoring puts the failure on the right step in seconds; the gate flags this paper for human review instead of silently writing bad data into the database.
             </div>
         </div>
 
