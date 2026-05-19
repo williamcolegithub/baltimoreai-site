@@ -25,8 +25,8 @@
         })(window, document, "clarity", "script", "w8mauz9oq6");
     </script>
     <!-- End Microsoft Clarity -->
-    <title>BaltimoreAI — Practical AI for Baltimore Businesses</title>
-    <meta name="description" content="AI consultancy comprised of former NIH Data Scientists and National Security Cloud Engineers serving Baltimore businesses.">
+    <title>BaltimoreAI — Evaluate, Improve, and Verify your AI</title>
+    <meta name="description" content="We define the metrics that matter for your RAG and agents, run a closed-loop pipeline to improve them, and verify nothing else regressed before you ship.">
     <link rel="icon" type="image/png" href="assets/brand/logo-mark.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -678,12 +678,12 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <h1>Practical AI for Baltimore Businesses</h1>
-            <p>Small Baltimore team. Backgrounds in NIH data science and federal cloud.</p>
+            <h1>Your AI works. Kinda.<br>Let's actually measure it.</h1>
+            <p>You shipped a RAG app or an agent. It worked in the demo. Now it's weird and you can't tell if it's getting better or worse.</p>
             <div class="hero-explainer">
-                <p>We build systems that answer customer questions, process documents, extract insights, and automate workflows. Most of it runs on large language models.</p>
+                <p>We figure out what "good" means for your app, run a bunch of tests, change stuff until the numbers go up, and make sure nothing else broke.</p>
             </div>
-            <a href="#contact" class="cta-button">Talk to us</a>
+            <a href="#contact" class="cta-button">Show us your setup</a>
         </div>
     </section>
 
@@ -692,85 +692,99 @@
         <div class="opinions-inner">
             <div class="opinion">
                 <span class="num">01</span>
-                <p>We don't build generic chatbots.</p>
+                <p>"Looks good to me" is not a metric.</p>
             </div>
             <div class="opinion">
                 <span class="num">02</span>
-                <p>Your data never leaves your stack without your written OK.</p>
+                <p>If you can't measure it, you're guessing.</p>
             </div>
             <div class="opinion">
                 <span class="num">03</span>
-                <p>Half our intake calls end with "you don't need this."</p>
+                <p>The power is in knowing.</p>
             </div>
         </div>
     </section>
 
-    <!-- WHO WE SERVE -->
-    <section class="serve-section">
-        <div class="container">
-            <h2 class="section-title">Where we <span class="accent">work</span></h2>
-            <div class="serve-grid">
-                <div class="serve-card">
-                    <h3>Universities & Research Labs</h3>
-                    <p>JHU, UMB, Loyola, and other academic institutions with complex datasets and research workflows.</p>
-                </div>
-                <div class="serve-card">
-                    <h3>Healthcare & Biotech</h3>
-                    <p>Medical practices, hospitals, and scientific organizations handling sensitive information and compliance requirements.</p>
-                </div>
-                <div class="serve-card">
-                    <h3>Local Government</h3>
-                    <p>City and county agencies looking to modernize records, improve public services, and streamline operations.</p>
-                </div>
-                <div class="serve-card">
-                    <h3>Small & Medium Businesses</h3>
-                    <p>Professional services, manufacturers, and trade businesses tired of manual processes and buried paperwork.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
+    <!-- THREE PILLARS -->
     <section class="services-section">
         <div class="container">
-            <h2 class="section-title">What we <span class="accent">build</span></h2>
+            <h2 class="section-title">How it <span class="accent">works</span></h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <span class="service-tag">Free 90-min audit</span>
-                    <h3>AI Readiness Assessment</h3>
-                    <p>We sit down with your team, walk your workflows, and tell you where AI will save time and money. About half our intake calls end with "you don't need this."</p>
+                    <span class="service-tag">Step 01 · Evaluate</span>
+                    <h3>ok but is it actually good</h3>
+                    <p>We write down what good looks like for your app — did it answer right, did it use the right tool, was it fast, did it lie. Then we score every answer. No more "feels fine."</p>
                 </div>
                 <div class="service-card">
-                    <span class="service-tag">PDF · scan · form</span>
-                    <h3>Document Processing</h3>
-                    <p>Turn PDFs, contracts, and records into searchable databases. Find information in seconds instead of hours.</p>
+                    <span class="service-tag">Step 02 · Improve</span>
+                    <h3>make the number go up</h3>
+                    <p>We try a bunch of versions — different prompts, different retrieval, different routing — and keep the one that scores best. Not vibes. Receipts.</p>
                 </div>
                 <div class="service-card">
-                    <span class="service-tag">On-prem deployable</span>
-                    <h3>AI Assistant (RAG)</h3>
-                    <p>A secure internal chatbot that knows your manuals, procedures, and files. Answers questions instantly. Stays inside your network.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-tag">No rip-and-replace</span>
-                    <h3>System Integration</h3>
-                    <p>Connect modern AI to your existing software: ERPs, databases, and legacy systems.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-tag">Always-on</span>
-                    <h3>Task Automation</h3>
-                    <p>Automate scheduling, follow-ups, data entry, and other repetitive tasks that slow your team down.</p>
+                    <span class="service-tag">Step 03 · Verify</span>
+                    <h3>did we break something else</h3>
+                    <p>Before anything ships, we re-run the whole test suite. If any score dropped, it doesn't go out. You stop finding out from users.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CIVIC -->
+    <!-- DEMOS TEASER -->
+    <section class="serve-section">
+        <div class="container">
+            <h2 class="section-title">See it <span class="accent">run</span></h2>
+            <div class="serve-grid">
+                <div class="serve-card">
+                    <h3>RAG over a fictional wiki</h3>
+                    <p>Watch the score climb across four tries. Then watch the verify gate block a bad change before it goes out.</p>
+                </div>
+                <div class="serve-card">
+                    <h3>Story critique bot</h3>
+                    <p>See it pick the right rubric and grade with it. Before-and-after on the same set of drafts.</p>
+                </div>
+                <div class="serve-card">
+                    <h3>Outline → draft → revise agent</h3>
+                    <p>Every step is scored. You can see exactly where it broke, and exactly what the fix moved.</p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top: 36px;">
+                <a href="demos.html" class="cta-button cta-button-solid">Open the demos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STACK -->
     <section class="civic-section">
         <div class="container">
-            <h2 class="section-title">Civic <span class="accent">work</span></h2>
-            <div class="civic-content">
-                <p>We're available to city leadership, academic institutions, and community organizations for conversations on <span class="highlight">responsible AI policy, workforce development, and practical implementation</span>.</p>
+            <h2 class="section-title">What's in the <span class="accent">box</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-tag">Schemas</span>
+                    <h3>Pydantic</h3>
+                    <p>Keeps inputs and outputs clean enough to grade. If the shape's wrong, the run fails loud instead of quietly lying.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Your model</span>
+                    <h3>Your LLM SDK</h3>
+                    <p>Claude, GPT, Llama, whatever you're already using. We plug into the SDK you have.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Orchestration</span>
+                    <h3>LangGraph</h3>
+                    <p>Strings the steps together so we can see exactly where it fell apart, not just that it did.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Graders</span>
+                    <h3>DeepEval</h3>
+                    <p>Faithfulness, recall, relevance, tool-use correctness. Plus your own checks when the standard ones miss.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-tag">Memory</span>
+                    <h3>MLflow</h3>
+                    <p>Every run kept. Every metric tracked. So you can look back and see what each change actually did.</p>
+                </div>
             </div>
+            <p style="text-align:center; margin-top: 40px; font-size: 1.15rem; color: var(--ink); font-weight: 600;">The power is in knowing.</p>
         </div>
     </section>
 
@@ -793,18 +807,18 @@
                             <label for="service">What do you need help with?</label>
                             <select id="service" name="service">
                                 <option value="">Choose one...</option>
-                                <option value="strategy">AI Strategy & Planning</option>
-                                <option value="documents">Document Processing</option>
-                                <option value="assistant">AI Assistant / Chatbot</option>
-                                <option value="integration">System Integration</option>
-                                <option value="automation">Task Automation</option>
+                                <option value="evaluate">Evaluate — set up scoring for what we have</option>
+                                <option value="improve">Improve — move the numbers up</option>
+                                <option value="verify">Verify — gate releases so nothing regresses</option>
+                                <option value="full">Full pipeline — all three</option>
+                                <option value="teardown">Teardown — look at our current setup</option>
                                 <option value="careers">Careers & Opportunities</option>
                                 <option value="other">Not Sure / Other</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message" id="messageLabel">Description *</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="Where's the friction in your business?"></textarea>
+                            <textarea id="message" name="message" rows="4" required placeholder="What does your AI app do, and where is it weird?"></textarea>
                         </div>
                         <button type="submit" class="submit-button">Send Message</button>
                     </form>
@@ -838,7 +852,7 @@
                     <img src="assets/brand/logo-mark.png" alt="">
                     <div class="name">Baltimore<span class="accent">AI</span></div>
                 </div>
-                <p class="footer-tag">AI consulting based in Baltimore.</p>
+                <p class="footer-tag">Evaluate, improve, and verify pipelines for RAG and agents. Baltimore.</p>
             </div>
             <div class="footer-col">
                 <h4>Get in touch</h4>
@@ -865,14 +879,14 @@
         const messageLabel = document.getElementById('messageLabel');
 
         const placeholders = {
-            'strategy': "Where's the friction in your business?",
-            'documents': "What documents or records need processing?",
-            'assistant': "What questions should your AI assistant answer?",
-            'integration': "What systems need to work together?",
-            'automation': "What repetitive tasks slow your team down?",
+            'evaluate': "What does your app do? What are users complaining about, or what are you unsure about?",
+            'improve': "What numbers do you already have, and what do you wish moved?",
+            'verify': "How do you currently decide if a change is safe to ship?",
+            'full': "Walk us through your app and where you'd like to start.",
+            'teardown': "Drop a link to a repo or describe your setup.",
             'careers': "Tell us about your background and what you're looking for",
-            'other': "Where's the friction in your business?",
-            'default': "Where's the friction in your business?"
+            'other': "What does your AI app do, and where is it weird?",
+            'default': "What does your AI app do, and where is it weird?"
         };
 
         const labels = {
