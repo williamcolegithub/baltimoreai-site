@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Firm Demos — Case Research, Contract Review, Drafting, Meeting Intelligence — BethesdaAI</title>
+    <link rel="canonical" href="https://bethesdaai.org/demos/legal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bethesda AI">
+    <meta property="og:title" content="Law Firm Demos — BethesdaAI">
+    <meta property="og:description" content="Four demos built for law firms: case research grounded in your own files, contract review, drafting support, and meeting intelligence.">
+    <meta property="og:url" content="https://bethesdaai.org/demos/legal.html">
+    <meta property="og:image" content="https://bethesdaai.org/assets/brand/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Law Firm Demos — BethesdaAI">
+    <meta name="twitter:description" content="Four demos built for law firms: case research grounded in your own files, contract review, drafting support, and meeting intelligence.">
+    <meta name="twitter:image" content="https://bethesdaai.org/assets/brand/og-image.png">
+    <meta name="description" content="Four demos built for law firms: case research grounded in your own files, contract review, drafting support, and meeting intelligence.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='6' y='52' font-family=%22Georgia,%20'Times%20New%20Roman',%20serif%22 font-weight='900' font-size='54' fill='%23111111'%3EB%3C/text%3E%3Ccircle cx='53' cy='9' r='6' fill='%23FF6F4C'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-teal: #111111;
+            --brand-teal-dark: #000000;
+            --brand-teal-light: #e2e2e2;
+            --brand-teal-bg: #f5f5f5;
+            --brand-accent: #FF6F4C;
+            --page-bg: #ffffff;
+            --section-alt: #f7f7f7;
+            --card-bg: #ffffff;
+            --border: #e0e0e0;
+            --border-strong: #cccccc;
+            --ink: #0a0a0a;
+            --ink-muted: #555555;
+            --ink-faint: #999999;
+            --white: #ffffff;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; color: var(--ink-muted);
+            background-color: var(--page-bg); overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Roboto Slab', 'Rockwell', Georgia, serif; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); }
+        .navbar-brand { font-family: 'Roboto Slab', 'Rockwell', Georgia, serif; }
+        a { color: inherit; }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border); padding: 0 2rem;
+        }
+        .navbar-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; height: 68px;
+        }
+        .navbar-brand {
+            display: flex; align-items: center; gap: 20px;
+            font-size: 1.2rem; font-weight: 800; color: var(--ink);
+            text-decoration: none; letter-spacing: -0.5px;
+        }
+        .logo-mark {
+            position: relative; display: inline-flex; flex-shrink: 0;
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 900;
+            line-height: 1; color: var(--brand-teal); font-size: 1.85rem;
+        }
+        .logo-mark::after {
+            content: ''; position: absolute; top: -1px; right: -9px;
+            width: 8px; height: 8px; border-radius: 50%; background: var(--brand-accent);
+        }
+        .navbar-brand .accent { color: var(--brand-accent); }
+        .navbar-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .navbar-links a { color: var(--ink-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s; }
+        .navbar-links a:hover, .navbar-links a.active { color: var(--brand-teal); }
+        .navbar-links a.nav-cta {
+            background: var(--brand-teal); color: var(--white);
+            padding: 8px 20px; border-radius: 6px;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .navbar-links a.nav-cta:hover { background: var(--brand-teal-dark); color: var(--white); }
+
+        .page-hero {
+            position: relative;
+            background: var(--brand-teal);
+            color: var(--white);
+            padding: 140px 2rem 56px; text-align: center;
+            overflow: hidden;
+        }
+        .page-hero > * { position: relative; z-index: 1; }
+        .page-hero .crumb {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .page-hero .crumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+        .page-hero .crumb a:hover { color: var(--white); }
+        .page-hero h1 { color: var(--white); font-size: 2.4rem; margin-bottom: 0.7rem; }
+        .page-hero p { font-size: 1.05rem; max-width: 680px; margin: 0 auto; color: rgba(255,255,255,0.92); }
+
+        .demo-wrap { max-width: 1100px; margin: 0 auto; padding: 42px 20px 80px; }
+
+        .tab-bar {
+            display: flex; gap: 8px; flex-wrap: wrap;
+            margin-bottom: 28px; border-bottom: 1px solid var(--border); padding-bottom: 0;
+        }
+        .tab-btn {
+            padding: 12px 18px; border: none; background: none;
+            color: var(--ink-muted); font-size: 0.92rem; font-weight: 700; font-family: inherit;
+            cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .tab-btn:hover { color: var(--ink); }
+        .tab-btn.active { color: var(--brand-teal); border-bottom-color: var(--brand-accent); }
+
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        /* ── Case Research (chat) ── */
+        .live-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-bottom: 18px;
+            padding: 5px 12px; border-radius: 20px;
+            background: var(--section-alt); border: 1px solid var(--border-strong);
+            font-size: 0.75rem; font-weight: 700; color: var(--ink);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .live-pill .dot {
+            width: 7px; height: 7px; border-radius: 50%; background: var(--brand-accent);
+            box-shadow: 0 0 6px var(--brand-accent);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .case-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0 26px; }
+        .case-card {
+            text-align: left; padding: 14px 16px; border-radius: 10px; font-family: inherit;
+            background: var(--card-bg); border: 1px solid var(--border); cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .case-card:hover { border-color: var(--brand-teal); }
+        .case-card.selected { border-color: var(--brand-accent); box-shadow: 0 0 0 2px rgba(255,111,76,0.2); }
+        .case-card .case-tag {
+            display: block; font-size: 0.64rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; color: var(--brand-accent); margin-bottom: 6px;
+        }
+        .case-card h4 { font-size: 0.92rem; margin-bottom: 6px; line-height: 1.3; }
+        .case-card .case-hint { font-size: 0.7rem; color: var(--ink-faint); }
+
+        .research-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px; }
+        .side-card .sub { font-size: 0.8rem; color: var(--ink-muted); margin-bottom: 12px; }
+
+        .doc-modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 2000;
+            background: rgba(10,10,10,0.55); align-items: center; justify-content: center; padding: 20px;
+        }
+        .doc-modal-overlay.open { display: flex; }
+        .doc-modal {
+            background: var(--card-bg); border-radius: 14px; max-width: 560px; width: 100%;
+            max-height: 80vh; overflow-y: auto; padding: 26px 28px; position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+        }
+        .doc-modal .doc-modal-close {
+            position: absolute; top: 14px; right: 16px; background: none; border: none;
+            font-size: 1.3rem; color: var(--ink-faint); cursor: pointer; line-height: 1;
+        }
+        .doc-modal .doc-modal-close:hover { color: var(--ink); }
+        .doc-modal h3 { font-size: 1.1rem; margin-bottom: 4px; padding-right: 24px; }
+        .doc-modal .doc-modal-tag {
+            display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; color: var(--brand-accent); margin-bottom: 14px;
+        }
+        .doc-modal p { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.65; }
+
+        .chat-panel {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+            display: flex; flex-direction: column; height: 560px; overflow: hidden;
+            box-shadow: 0 6px 24px rgba(10,10,10,0.05);
+        }
+        .chat-header {
+            padding: 14px 20px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--section-alt);
+        }
+        .chat-header .title { font-size: 0.85rem; font-weight: 700; color: var(--ink); letter-spacing: 0.3px; }
+        .chat-header .model { font-size: 0.7rem; color: var(--ink-faint); font-family: ui-monospace, monospace; }
+        .chat-messages {
+            flex: 1; padding: 20px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 16px;
+            background: var(--page-bg);
+        }
+        .msg { display: flex; gap: 10px; max-width: 90%; }
+        .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+        .msg .avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; font-weight: 800; flex-shrink: 0; color: #fff;
+        }
+        .msg.user .avatar { background: var(--ink); }
+        .msg.assistant .avatar { background: var(--brand-teal); }
+        .msg .bubble {
+            padding: 12px 16px; border-radius: 12px;
+            font-size: 0.94rem; line-height: 1.55;
+            background: var(--section-alt); color: var(--ink);
+            border: 1px solid var(--border);
+            word-wrap: break-word; white-space: pre-wrap;
+        }
+        .msg.user .bubble { background: var(--brand-teal); color: var(--white); border-color: transparent; }
+        .msg.assistant .bubble .cite {
+            display: inline-block; padding: 1px 8px; border-radius: 4px;
+            background: #fff1ec; color: #b6431f;
+            border: 1px solid #ffd9c9;
+            font-size: 0.78rem; font-weight: 600; margin: 0 2px;
+        }
+        .typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); animation: blink 1.2s infinite; }
+        .typing span:nth-child(2) { animation-delay: 0.2s; }
+        .typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+        .chat-input-row { display: flex; gap: 10px; padding: 14px; border-top: 1px solid var(--border); background: var(--section-alt); }
+        .chat-input {
+            flex: 1; padding: 11px 14px; border-radius: 8px;
+            background: var(--white); border: 1px solid var(--border-strong);
+            color: var(--ink); font-size: 0.95rem; font-family: inherit; outline: none;
+        }
+        .chat-input:focus { border-color: var(--brand-teal); box-shadow: 0 0 0 3px rgba(10,10,10,0.08); }
+        .chat-input:disabled { opacity: 0.5; }
+        .send-btn {
+            padding: 0 22px; border-radius: 8px; background: var(--brand-teal); color: #fff; border: none;
+            font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+        .send-btn:hover:not(:disabled) { background: var(--brand-teal-dark); }
+        .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .side-panel { display: flex; flex-direction: column; gap: 18px; }
+        .side-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+        .side-card h3 { font-size: 0.78rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 700; }
+        .suggested { display: flex; flex-direction: column; gap: 8px; }
+        .suggested button {
+            text-align: left; padding: 10px 14px; border-radius: 8px;
+            background: var(--section-alt); border: 1px solid var(--border);
+            color: var(--ink); font-size: 0.86rem; font-family: inherit; cursor: pointer; line-height: 1.4;
+        }
+        .suggested button:hover { border-color: var(--brand-teal); background: var(--brand-teal-bg); }
+        .corpus { display: flex; flex-direction: column; gap: 10px; }
+        .corpus-doc {
+            width: 100%; text-align: left; font-family: inherit; text-decoration: none;
+            display: flex; flex-direction: column; gap: 5px;
+            padding: 10px 12px; border-radius: 6px;
+            background: var(--brand-teal-bg); border: 1px solid var(--border);
+            cursor: pointer; transition: border-color 0.2s;
+        }
+        .corpus-doc:hover { border-color: var(--brand-teal); }
+        .corpus-doc .doc-type-tag {
+            align-self: flex-start;
+            font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 2px 7px; border-radius: 3px;
+        }
+        .doc-type-case-law .doc-type-tag { background: #e4e9f5; color: #33508c; }
+        .doc-type-statute .doc-type-tag { background: #e6f0e8; color: #2f6b3f; }
+        .doc-type-firm-policy .doc-type-tag { background: #f0ece0; color: #7a6a3f; }
+        .doc-type-case-file .doc-type-tag { background: #fff1ec; color: #b6431f; }
+        .corpus-doc .row { font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+        .corpus-doc .row .cite { font-weight: 500; color: var(--ink-muted); font-size: 0.76rem; }
+        .corpus-doc .row .open-hint { font-weight: 500; color: var(--ink-faint); font-size: 0.72rem; margin-left: 6px; }
+        .corpus-doc .summary { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.5; }
+        .error-banner {
+            margin: 10px 14px; padding: 10px 14px;
+            background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25);
+            border-radius: 8px; color: #b91c1c; font-size: 0.82rem;
+        }
+
+        /* ── Contract Review (shared with Drafting) ── */
+        .doc-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .doc-tab {
+            padding: 10px 18px; border-radius: 8px; background: var(--white); border: 1px solid var(--border);
+            color: var(--ink-muted); font-size: 0.85rem; font-family: inherit; font-weight: 600; cursor: pointer;
+        }
+        .doc-tab:hover { color: var(--brand-teal); border-color: var(--border-strong); }
+        .doc-tab.active { background: var(--brand-teal); border-color: var(--brand-teal); color: var(--white); }
+
+        .processor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .cr-panel {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+            overflow: hidden; min-height: 520px; display: flex; flex-direction: column;
+        }
+        .cr-panel-header {
+            padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--section-alt);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .cr-panel-header .title { font-size: 0.78rem; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 1px; }
+        .cr-panel-header .stat { font-size: 0.75rem; color: var(--ink-faint); font-family: ui-monospace, monospace; }
+        .cr-panel-body { padding: 20px; flex: 1; overflow: auto; background: var(--page-bg); }
+
+        .doc-mock {
+            background: #fafaf6; color: #222; padding: 24px; border-radius: 6px;
+            font-family: 'Georgia', serif; font-size: 0.82rem;
+            box-shadow: 0 4px 18px rgba(10,10,10,0.08), 0 0 0 1px rgba(10,10,10,0.04);
+            position: relative; min-height: 420px;
+        }
+        .doc-mock h4 { color: #111; font-size: 0.95rem; border-bottom: 2px solid #222; padding-bottom: 6px; margin-bottom: 14px; }
+        .doc-mock .doc-row { margin-bottom: 9px; line-height: 1.5; position: relative; padding: 2px 4px; border-radius: 3px; transition: background 0.3s; }
+        .doc-mock .doc-row.scanning { background: rgba(10,10,10,0.1); }
+        .doc-mock .doc-row.found { background: rgba(34,197,94,0.16); }
+        .doc-mock .doc-row.flagged { background: rgba(255,111,76,0.16); }
+        .doc-mock .label { color: #555; font-weight: bold; display: inline-block; min-width: 150px; }
+
+        .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; color: var(--ink-faint); text-align: center; padding: 30px; }
+        .empty-state p { font-size: 0.95rem; max-width: 260px; color: var(--ink-muted); }
+        .empty-state .sub { font-size: 0.8rem; color: var(--ink-faint); margin-top: 12px; }
+
+        .field {
+            background: var(--section-alt); border: 1px solid var(--border); border-radius: 8px;
+            padding: 10px 14px; margin-bottom: 10px; opacity: 0; transform: translateY(8px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .field.visible { opacity: 1; transform: translateY(0); }
+        .field-label { font-size: 0.7rem; color: var(--ink-faint); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .field-value { font-size: 0.92rem; color: var(--ink); font-weight: 500; }
+        .field-confidence { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+        .field-confidence .bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+        .field-confidence .fill { height: 100%; background: #16a34a; width: 0%; transition: width 0.6s ease-out; }
+        .field-confidence .pct { font-size: 0.7rem; color: #16a34a; font-weight: 700; min-width: 90px; text-align: right; }
+        .field.flagged .fill { background: var(--brand-accent); }
+        .field.flagged .pct { color: var(--brand-accent); }
+
+        .summary-bar {
+            margin-top: 14px; padding: 14px 16px; border-radius: 10px;
+            display: none; align-items: center; justify-content: space-between;
+            background: var(--section-alt); border: 1px solid var(--border-strong);
+        }
+        .summary-bar.show { display: flex; }
+        .summary-bar .text { font-size: 0.82rem; color: var(--ink); font-weight: 700; }
+
+        .run-btn {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+            padding: 10px 24px; border-radius: 8px; background: var(--brand-teal); color: #fff; border: none;
+            font-weight: 700; font-size: 0.85rem; font-family: inherit; text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+        .run-btn:hover:not(:disabled) { background: var(--brand-teal-dark); }
+        .run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .run-btn.big-run { padding: 12px 26px; }
+
+        /* ── Drafting ── */
+        .draft-input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+        .draft-input {
+            flex: 1; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border-strong);
+            font-size: 0.95rem; font-family: inherit; color: var(--ink); outline: none;
+        }
+        .draft-input:focus { border-color: var(--brand-teal); box-shadow: 0 0 0 3px rgba(10,10,10,0.08); }
+        .draft-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .draft-section {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+            opacity: 0; transform: translateY(8px); transition: opacity 0.35s, transform 0.35s;
+        }
+        .draft-section.visible { opacity: 1; transform: translateY(0); }
+        .draft-section h4 { font-size: 0.95rem; margin-bottom: 6px; }
+        .draft-section p { font-size: 0.88rem; color: var(--ink-muted); }
+        .draft-section .src {
+            display: inline-block; margin-top: 8px; font-size: 0.72rem; font-weight: 700;
+            color: #b6431f; background: #fff1ec; border: 1px solid #ffd9c9;
+            padding: 2px 8px; border-radius: 4px;
+        }
+        .draft-empty { text-align: center; padding: 60px 20px; color: var(--ink-faint); }
+
+        /* ── Meeting Intelligence (static) ── */
+        .mi-wrap { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+        .mi-frame { background: #141414; border-radius: 12px; padding: 12px; }
+        .mi-note { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+        .mi-note h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .mi-note p { font-size: 0.9rem; margin-bottom: 16px; }
+        .btn-ask {
+            display: inline-block; padding: 10px 20px; border-radius: 8px;
+            background: var(--brand-teal); color: var(--white); text-decoration: none;
+            font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn-ask:hover { background: var(--brand-teal-dark); }
+
+        footer { text-align: center; padding: 40px 20px; color: var(--ink-faint); font-size: 0.88rem; border-top: 1px solid var(--border); }
+        footer a { color: var(--ink-muted); text-decoration: none; }
+        footer a:hover { color: var(--brand-teal); }
+
+        @media (max-width: 900px) {
+            .research-grid, .processor-grid, .mi-wrap { grid-template-columns: 1fr; }
+            .case-picker { grid-template-columns: 1fr 1fr; }
+            .chat-panel { height: 500px; }
+            .page-hero h1 { font-size: 1.9rem; }
+        }
+        @media (max-width: 560px) {
+            .case-picker { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .navbar { padding: 0 1rem; }
+            .navbar-links { gap: 1rem; }
+            .navbar-links li:not(:last-child) { display: none; }
+        }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle {
+            background: none; border: none; cursor: pointer; font: inherit;
+            color: var(--ink-muted); font-size: 0.95rem; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 4px; padding: 0;
+            transition: color 0.2s;
+        }
+        .nav-dropdown-toggle:hover,
+        .nav-dropdown-toggle.active,
+        .nav-dropdown.open .nav-dropdown-toggle { color: var(--brand-teal); }
+        .nav-dropdown-toggle .caret { font-size: 0.65em; transition: transform 0.2s; }
+        .nav-dropdown.open .nav-dropdown-toggle .caret { transform: rotate(180deg); }
+        .nav-dropdown-menu {
+            list-style: none; position: absolute; top: calc(100% + 18px); left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.14); padding: 8px; min-width: 200px;
+            opacity: 0; visibility: hidden; transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+            z-index: 1100;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown.open .nav-dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
+        .nav-dropdown-menu li { list-style: none; margin: 0; }
+        .nav-dropdown-menu a {
+            display: block; padding: 9px 14px; border-radius: 6px; white-space: nowrap;
+            font-size: 0.9rem; font-weight: 600; color: var(--ink-muted); text-decoration: none;
+        }
+        .nav-dropdown-menu a:hover { background: var(--section-alt); color: var(--brand-teal); }
+        @media (max-width: 768px) {
+            .nav-dropdown-menu {
+                position: static; transform: none; opacity: 1; visibility: visible;
+                box-shadow: none; border: none; background: none; padding: 4px 0 0 14px;
+                display: none; min-width: 0;
+            }
+            .nav-dropdown.open .nav-dropdown-menu { display: block; }
+            .nav-dropdown-toggle { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+            <span class="logo-mark" aria-hidden="true">B</span>
+            <span><span style="color: var(--ink);">Bethesda</span><span class="accent">AI</span></span>
+        </a>
+        <ul class="navbar-links">
+            <li><a href="../index.html">Home</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle active" type="button" aria-haspopup="true" aria-expanded="false">Demos <span class="caret">▾</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="../demos.html">All Demos</a></li>
+                    <li><a href="legal.html">Legal Assistant Demo</a></li>
+                </ul>
+            </li>
+            <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="page-hero">
+    <span class="crumb"><a href="../demos.html">← All demos</a></span>
+    <h1>Built for law firms</h1>
+    <p>Four ways we help local firms manage their cases and clients: case research grounded in your own files, contract review, drafting support, and meeting intelligence.</p>
+</section>
+
+<section class="demo-wrap">
+
+    <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" data-panel="research">Case Research</button>
+        <button class="tab-btn" data-panel="contracts">Contract Review</button>
+        <button class="tab-btn" data-panel="drafting">Drafting Support</button>
+        <button class="tab-btn" data-panel="meetings">Meeting Intelligence</button>
+    </div>
+
+    <!-- ══════════ PANEL 1: CASE RESEARCH ══════════ -->
+    <div class="panel active" id="panel-research">
+        <span class="live-pill"><span class="dot"></span> Live AI</span>
+
+        <div class="case-picker" id="casePicker">
+            <button class="case-card" data-case="meridian">
+                <span class="case-tag">Contract · Force Majeure</span>
+                <h4>Meridian Logistics v. Coastal Freight</h4>
+                <span class="case-hint">Click to open</span>
+            </button>
+            <button class="case-card" data-case="vantage">
+                <span class="case-tag">Bankruptcy · Lease Assignment</span>
+                <h4>In re Vantage Retail Group</h4>
+                <span class="case-hint">Click to open</span>
+            </button>
+            <button class="case-card" data-case="ashford">
+                <span class="case-tag">Employment · Non-Compete</span>
+                <h4>Ashford Tech v. Reyes</h4>
+                <span class="case-hint">Click to open</span>
+            </button>
+            <button class="case-card" data-case="whitfield">
+                <span class="case-tag">Trusts &amp; Estates · Fiduciary Duty</span>
+                <h4>Whitfield Family Trust Dispute</h4>
+                <span class="case-hint">Click to open</span>
+            </button>
+        </div>
+
+        <div class="research-grid">
+            <div class="side-panel">
+                <div class="side-card">
+                    <h3 id="lawBoxTitle">Case Details</h3>
+                    <p class="sub" id="lawBoxEmpty">Click a case file above to load the law, statutes, and precedent relevant to it.</p>
+                    <p class="sub" id="lawBoxNote" hidden style="margin-top:-6px;">Case Law and Statute entries are real and link to a real source. Case File and Firm Policy entries are this sample firm's own invented materials for this demo matter.</p>
+                    <div class="corpus" id="lawBoxList" hidden></div>
+                </div>
+            </div>
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <span class="title" id="chatTitle">Sample Firm Case Research Assistant</span>
+                    <span class="model">claude-haiku-4-5</span>
+                </div>
+                <div class="chat-messages" id="messages">
+                    <div class="msg assistant">
+                        <div class="avatar">AI</div>
+                        <div class="bubble">Please select a case file above before we get started — I'll need to know which matter we're working on.</div>
+                    </div>
+                </div>
+                <div class="chat-input-row">
+                    <input class="chat-input" id="input" type="text" placeholder="Select a case file to begin…" maxlength="2000" autocomplete="off" disabled>
+                    <button class="send-btn" id="send" disabled>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ PANEL 2: CONTRACT REVIEW ══════════ -->
+    <div class="panel" id="panel-contracts">
+        <div class="doc-tabs" id="crTabs">
+            <button class="doc-tab active" data-doc="services">📄 Services Agreement</button>
+            <button class="doc-tab" data-doc="lease">🏢 Commercial Lease</button>
+            <button class="doc-tab" data-doc="nda">🔒 NDA</button>
+        </div>
+        <div class="processor-grid">
+            <div class="cr-panel">
+                <div class="cr-panel-header">
+                    <span class="title">Source Contract</span>
+                    <span class="stat" id="crStat">1 page · 210 KB</span>
+                </div>
+                <div class="cr-panel-body">
+                    <div class="doc-mock" id="crMock"></div>
+                    <button class="run-btn" id="crRunBtn">▶ Review Contract</button>
+                </div>
+            </div>
+            <div class="cr-panel">
+                <div class="cr-panel-header">
+                    <span class="title">Clause-by-Clause Review</span>
+                    <span class="stat" id="crFieldStat">— waiting —</span>
+                </div>
+                <div class="cr-panel-body">
+                    <div id="crFieldsContainer">
+                        <div class="empty-state">
+                            <p>Review the clauses in the contract on the left.</p>
+                            <button class="run-btn big-run" data-cr-run>▶ Review Contract</button>
+                            <p class="sub">Pick a different sample above to try another contract type.</p>
+                        </div>
+                    </div>
+                    <div class="summary-bar" id="crSummaryBar">
+                        <span class="text" id="crSummaryText">✓ Reviewed 0 clauses in 0.0s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ PANEL 3: DRAFTING SUPPORT ══════════ -->
+    <div class="panel" id="panel-drafting">
+        <div class="draft-input-row">
+            <input class="draft-input" id="draftInput" type="text" value="Draft a demand letter for a late-paying commercial client" readonly>
+            <button class="run-btn" id="draftRunBtn" style="margin-top:0;">▶ Generate Draft</button>
+        </div>
+        <div class="draft-grid" id="draftGrid">
+            <div class="draft-empty" id="draftEmpty">Click "Generate Draft" to assemble a first pass, section by section.</div>
+        </div>
+    </div>
+
+    <!-- ══════════ PANEL 4: MEETING INTELLIGENCE ══════════ -->
+    <div class="panel" id="panel-meetings">
+        <div class="mi-wrap">
+            <div class="mi-frame">
+                <svg viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <rect width="520" height="360" rx="10" fill="#141414"/>
+                    <rect width="520" height="36" rx="10" fill="#1e1e1e"/>
+                    <rect y="26" width="520" height="10" fill="#1e1e1e"/>
+                    <circle cx="18" cy="18" r="5" fill="#ff5f57"/>
+                    <circle cx="36" cy="18" r="5" fill="#febc2e"/>
+                    <circle cx="54" cy="18" r="5" fill="#28c840"/>
+                    <text x="260" y="22" text-anchor="middle" fill="#666" font-size="11" font-family="system-ui">BethesdaAI — Meeting Intelligence</text>
+
+                    <rect x="16" y="50" width="488" height="40" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+                    <circle cx="34" cy="70" r="6" fill="#ef4444"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" repeatCount="indefinite"/></circle>
+                    <text x="48" y="74" fill="#fff" font-size="10" font-family="system-ui" font-weight="700">RECORDING</text>
+                    <text x="120" y="74" fill="#777" font-size="10" font-family="ui-monospace, monospace">00:24:18</text>
+                    <text x="200" y="74" fill="#666" font-size="9.5" font-family="system-ui">Wed Mar 12 · Smith v. Reyes deposition prep</text>
+
+                    <g transform="translate(420, 60)">
+                        <rect x="0" y="6" width="2" height="8" fill="#FF6F4C"/>
+                        <rect x="5" y="2" width="2" height="16" fill="#FF6F4C"/>
+                        <rect x="10" y="4" width="2" height="12" fill="#FF6F4C"/>
+                        <rect x="15" y="0" width="2" height="20" fill="#FF6F4C"/>
+                        <rect x="20" y="3" width="2" height="14" fill="#FF6F4C"/>
+                        <rect x="25" y="6" width="2" height="8" fill="#FF6F4C"/>
+                        <rect x="30" y="1" width="2" height="18" fill="#FF6F4C"/>
+                        <rect x="35" y="4" width="2" height="12" fill="#FF6F4C"/>
+                        <rect x="40" y="2" width="2" height="16" fill="#FF6F4C"/>
+                        <rect x="45" y="5" width="2" height="10" fill="#FF6F4C"/>
+                        <rect x="50" y="0" width="2" height="20" fill="#FF6F4C"/>
+                        <rect x="55" y="3" width="2" height="14" fill="#FF6F4C"/>
+                        <rect x="60" y="6" width="2" height="8" fill="#FF6F4C"/>
+                    </g>
+
+                    <text x="16" y="112" fill="#888" font-size="9" font-family="system-ui" font-weight="700">LIVE TRANSCRIPT</text>
+                    <text x="16" y="132" fill="#e0967f" font-size="9.5" font-family="system-ui" font-weight="600">Counsel Reyes (00:23:42)</text>
+                    <text x="16" y="146" fill="#bbb" font-size="10" font-family="system-ui">…we'll need the chain-of-custody documents from</text>
+                    <text x="16" y="160" fill="#bbb" font-size="10" font-family="system-ui">the lab by Friday, otherwise the timeline slips into</text>
+                    <text x="16" y="174" fill="#bbb" font-size="10" font-family="system-ui">April. Karen, can you reach out to Dr. Holcomb?</text>
+                    <text x="16" y="194" fill="#e0967f" font-size="9.5" font-family="system-ui" font-weight="600">Karen Park (00:24:01)</text>
+                    <text x="16" y="208" fill="#bbb" font-size="10" font-family="system-ui">Yes — I'll send a request today and CC Marcus.</text>
+
+                    <rect x="280" y="100" width="224" height="240" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+                    <text x="296" y="120" fill="#FF6F4C" font-size="9" font-family="system-ui" font-weight="700">⚡ ACTION ITEMS · 4 detected</text>
+
+                    <rect x="296" y="132" width="192" height="44" rx="6" fill="#0f0f0f" stroke="#222" stroke-width="0.5"/>
+                    <rect x="296" y="132" width="3" height="44" fill="#FF6F4C"/>
+                    <text x="306" y="146" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">Email Dr. Holcomb re: chain-of-</text>
+                    <text x="306" y="158" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">custody documents</text>
+                    <text x="306" y="170" fill="#777" font-size="8" font-family="system-ui">Karen Park · due Fri Mar 14</text>
+
+                    <rect x="296" y="182" width="192" height="44" rx="6" fill="#0f0f0f" stroke="#222" stroke-width="0.5"/>
+                    <rect x="296" y="182" width="3" height="44" fill="#FF6F4C"/>
+                    <text x="306" y="196" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">CC Marcus on the lab request</text>
+                    <text x="306" y="208" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">thread</text>
+                    <text x="306" y="220" fill="#777" font-size="8" font-family="system-ui">Karen Park · today</text>
+
+                    <rect x="296" y="232" width="192" height="44" rx="6" fill="#0f0f0f" stroke="#222" stroke-width="0.5"/>
+                    <rect x="296" y="232" width="3" height="44" fill="#FF6F4C"/>
+                    <text x="306" y="246" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">Reschedule depo if docs slip</text>
+                    <text x="306" y="258" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">past Friday</text>
+                    <text x="306" y="270" fill="#777" font-size="8" font-family="system-ui">Counsel Reyes · contingent</text>
+
+                    <rect x="296" y="282" width="192" height="44" rx="6" fill="#0f0f0f" stroke="#222" stroke-width="0.5"/>
+                    <rect x="296" y="282" width="3" height="44" fill="#FF6F4C"/>
+                    <text x="306" y="296" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">Update case file with new</text>
+                    <text x="306" y="308" fill="#ddd" font-size="9" font-family="system-ui" font-weight="600">timeline before Wed prep</text>
+                    <text x="306" y="320" fill="#777" font-size="8" font-family="system-ui">Marcus Lee · Tue Mar 11</text>
+
+                    <rect x="16" y="320" width="250" height="22" rx="6" fill="rgba(255,111,76,0.14)" stroke="rgba(255,111,76,0.4)" stroke-width="0.5"/>
+                    <text x="28" y="335" fill="#FF6F4C" font-size="9" font-family="system-ui" font-weight="700">📨 Auto-send summary to attendees</text>
+                </svg>
+            </div>
+            <div class="mi-note">
+                <h3>Meeting Intelligence</h3>
+                <p>Record the call or deposition prep session. Get the transcript, a summary, and action items with owners and due dates automatically.</p>
+                <p style="font-size:0.82rem;color:var(--ink-faint);">This one's a concept mockup, not a live demo yet — reach out and we'll walk you through it.</p>
+                <a href="../index.html#contact" class="btn-ask">Ask us about this →</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="doc-modal-overlay" id="docModalOverlay">
+    <div class="doc-modal">
+        <button class="doc-modal-close" id="docModalClose" aria-label="Close">×</button>
+        <span class="doc-modal-tag" id="docModalTag">Firm policy — internal, sample</span>
+        <h3 id="docModalTitle"></h3>
+        <p id="docModalBody"></p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; <span class="yr">2026</span> Kimura Consulting LLC | <a href="https://bethesdaai.org">BethesdaAI.org</a></p>
+</footer>
+
+<script>
+    // ═══════════ TAB SWITCHING ═══════════
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+        });
+    });
+
+    // ═══════════ PANEL 1: CASE RESEARCH (live chat) ═══════════
+    const WORKER_URL = 'https://baltimoreai-legal-demo.rough-mouse-a959.workers.dev';
+
+    // Case Law / Statute entries below are real, well-known authorities (not
+    // invented) and link out to a real source. Case File and Firm Policy
+    // entries are the sample firm's own invented materials for this demo
+    // matter, so they stay in-page (Case File downloads a sample PDF, Firm
+    // Policy opens an in-page modal) rather than linking to a real source.
+    const CASES = {
+        meridian: {
+            title: 'Meridian Logistics v. Coastal Freight',
+            tag: 'Contract · Force Majeure',
+            docs: [
+                {
+                    name: 'Meridian Logistics v. Coastal Freight — Case File',
+                    cite: 'Matter No. 2026-CV-0114',
+                    type: 'Case File',
+                    summary: 'Sample case summary memo: parties, facts, procedural posture, and the legal issues this matter turns on.',
+                    pdf: '../assets/demos/legal/meridian-case-summary.pdf',
+                },
+                {
+                    name: 'Kel Kim Corp. v. Central Markets, Inc.',
+                    cite: '70 N.Y.2d 900 (1987)',
+                    type: 'Case Law',
+                    summary: 'Force majeure clauses are read narrowly: the specific event claimed to excuse performance generally has to be listed in the clause itself, not just implied by broad language.',
+                    url: 'https://scholar.google.com/scholar?q=%22Kel+Kim+Corp.+v.+Central+Markets%22',
+                },
+                {
+                    name: 'UCC § 2-615',
+                    cite: 'Excuse by Failure of Presupposed Conditions',
+                    type: 'Statute',
+                    summary: 'The Uniform Commercial Code\'s default excuse doctrine: a seller isn\'t in breach if performance became impracticable because of an event both sides assumed wouldn\'t happen — with notice required.',
+                    url: 'https://www.law.cornell.edu/ucc/2/2-615',
+                },
+            ],
+        },
+        vantage: {
+            title: 'In re Vantage Retail Group',
+            tag: 'Bankruptcy · Lease Assignment',
+            docs: [
+                {
+                    name: 'In re Vantage Retail Group — Case File',
+                    cite: 'Matter No. 2026-BK-2207',
+                    type: 'Case File',
+                    summary: 'Sample case summary memo: parties, facts, procedural posture, and the legal issues this matter turns on.',
+                    pdf: '../assets/demos/legal/vantage-case-summary.pdf',
+                },
+                {
+                    name: '11 U.S.C. § 365',
+                    cite: 'Executory Contracts and Unexpired Leases',
+                    type: 'Statute',
+                    summary: 'The Bankruptcy Code section governing lease assignment in Chapter 11 — it generally overrides a lease\'s anti-assignment language, so long as the debtor gives adequate assurance of future performance.',
+                    url: 'https://www.law.cornell.edu/uscode/text/11/365',
+                },
+                {
+                    name: 'Firm Client Intake Policy',
+                    cite: 'Sample — internal firm policy',
+                    type: 'Firm Policy',
+                    summary: 'Run a 7-year conflict check before opening any new matter. If a former client sits on the other side, both parties need to sign a written waiver before the firm proceeds.',
+                    full: 'Before opening a new matter, run a conflict check against all current and former clients, adverse parties, and related entities going back 7 years. Matters involving a former client on the opposing side require written waiver from both parties before proceeding. Escalate ambiguous conflicts to the ethics partner.',
+                },
+            ],
+        },
+        ashford: {
+            title: 'Ashford Tech v. Reyes',
+            tag: 'Employment · Non-Compete',
+            docs: [
+                {
+                    name: 'Ashford Tech v. Reyes — Case File',
+                    cite: 'Matter No. 2026-CV-0388',
+                    type: 'Case File',
+                    summary: 'Sample case summary memo: parties, facts, procedural posture, and the legal issues this matter turns on.',
+                    pdf: '../assets/demos/legal/ashford-case-summary.pdf',
+                },
+                {
+                    name: 'BDO Seidman v. Hirshberg',
+                    cite: '93 N.Y.2d 382 (1999)',
+                    type: 'Case Law',
+                    summary: 'Set the reasonableness test for non-competes: duration, geographic scope, and a legitimate business interest — and that overbroad terms can be narrowed by the court instead of voided outright.',
+                    url: 'https://scholar.google.com/scholar?q=%22BDO+Seidman+v.+Hirshberg%22',
+                },
+                {
+                    name: 'McDonnell Douglas Corp. v. Green',
+                    cite: '411 U.S. 792 (1973)',
+                    type: 'Case Law',
+                    summary: 'The foundational U.S. Supreme Court case on the burden-shifting framework used in employment retaliation and discrimination claims.',
+                    url: 'https://www.law.cornell.edu/supremecourt/text/411/792',
+                },
+            ],
+        },
+        whitfield: {
+            title: 'Whitfield Family Trust Dispute',
+            tag: 'Trusts & Estates · Fiduciary Duty',
+            docs: [
+                {
+                    name: 'Whitfield Family Trust Dispute — Case File',
+                    cite: 'Matter No. 2026-PR-0562',
+                    type: 'Case File',
+                    summary: 'Sample case summary memo: parties, facts, procedural posture, and the legal issues this matter turns on.',
+                    pdf: '../assets/demos/legal/whitfield-case-summary.pdf',
+                },
+                {
+                    name: 'Meinhard v. Salmon',
+                    cite: '249 N.Y. 458 (1928)',
+                    type: 'Case Law',
+                    summary: 'The classic articulation of fiduciary duty — a fiduciary owes "the punctilio of an honor the most sensitive," the standard still cited across trust, partnership, and corporate law.',
+                    url: 'https://scholar.google.com/scholar?q=%22Meinhard+v.+Salmon%22',
+                },
+                {
+                    name: 'Firm Memo — Fiduciary Duty Standards',
+                    cite: 'Sample — internal firm policy',
+                    type: 'Firm Policy',
+                    summary: 'A trustee\'s core duties are loyalty, prudent administration, and impartiality. Self-dealing is presumptively voidable regardless of good faith — courts weigh process, not just outcome.',
+                    full: 'Internal guidance: a trustee\'s core duties are loyalty, prudent administration, and impartiality among beneficiaries. Self-dealing transactions are presumptively voidable regardless of good faith. When advising a trustee facing removal, document each contested decision\'s rationale contemporaneously — courts weigh process, not just outcome.',
+                },
+            ],
+        },
+    };
+
+    const casePickerEl = document.getElementById('casePicker');
+    const lawBoxEmpty = document.getElementById('lawBoxEmpty');
+    const lawBoxList = document.getElementById('lawBoxList');
+    const lawBoxTitle = document.getElementById('lawBoxTitle');
+    const chatTitle = document.getElementById('chatTitle');
+    const docModalOverlay = document.getElementById('docModalOverlay');
+    const docModalTitle = document.getElementById('docModalTitle');
+    const docModalBody = document.getElementById('docModalBody');
+
+    function openDocModal(doc) {
+        docModalTitle.textContent = doc.name;
+        docModalBody.textContent = doc.full;
+        docModalOverlay.classList.add('open');
+    }
+    function closeDocModal() { docModalOverlay.classList.remove('open'); }
+    document.getElementById('docModalClose').addEventListener('click', closeDocModal);
+    docModalOverlay.addEventListener('click', (e) => { if (e.target === docModalOverlay) closeDocModal(); });
+
+    let selectedCase = null;
+
+    function selectCase(key) {
+        selectedCase = key;
+        const cfg = CASES[key];
+
+        document.querySelectorAll('.case-card').forEach(c => c.classList.toggle('selected', c.dataset.case === key));
+
+        lawBoxTitle.textContent = 'Case Details — ' + cfg.title;
+        lawBoxEmpty.hidden = true;
+        document.getElementById('lawBoxNote').hidden = false;
+        lawBoxList.hidden = false;
+        lawBoxList.innerHTML = '';
+        cfg.docs.forEach((doc) => {
+            const isDownload = doc.type === 'Case File';
+            const isExternal = doc.type === 'Case Law' || doc.type === 'Statute';
+            const el = document.createElement((isExternal || isDownload) ? 'a' : 'button');
+            el.className = 'corpus-doc doc-type-' + doc.type.replace(/\s+/g, '-').toLowerCase();
+            let hint = '— click to open';
+            if (isExternal) {
+                el.href = doc.url;
+                el.target = '_blank';
+                el.rel = 'noopener';
+                hint = '— opens real source ↗';
+            } else if (isDownload) {
+                el.href = doc.pdf;
+                el.download = '';
+                hint = '— download PDF ↓';
+            }
+            el.innerHTML = `
+                <span class="doc-type-tag">${doc.type}</span>
+                <span class="row">📄 ${doc.name} <span class="cite">${doc.cite}</span><span class="open-hint">${hint}</span></span>
+                <span class="summary">${doc.summary}</span>
+            `;
+            if (!isExternal && !isDownload) el.addEventListener('click', () => openDocModal(doc));
+            lawBoxList.appendChild(el);
+        });
+
+        chatTitle.textContent = cfg.title;
+        history.length = 0;
+        messagesEl.innerHTML = '';
+        addMessage('assistant', `Loaded "${cfg.title}." Would you like me to summarize the case, or is there something else I can help with?`);
+
+        inputEl.disabled = false;
+        sendBtn.disabled = false;
+        inputEl.placeholder = 'Ask about ' + cfg.title + '…';
+        inputEl.focus();
+    }
+
+    casePickerEl.addEventListener('click', (e) => {
+        const card = e.target.closest('.case-card');
+        if (card) selectCase(card.dataset.case);
+    });
+
+    const messagesEl = document.getElementById('messages');
+    const inputEl = document.getElementById('input');
+    const sendBtn = document.getElementById('send');
+    const history = [];
+    let busy = false;
+
+    function renderCitations(text) {
+        const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return escaped.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>').replace(/\[([^\]]+)\]/g, '<span class="cite">$1</span>');
+    }
+    function addMessage(role, text) {
+        const wrap = document.createElement('div');
+        wrap.className = 'msg ' + role;
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar';
+        avatar.textContent = role === 'user' ? 'YOU' : 'AI';
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        if (role === 'assistant') bubble.innerHTML = renderCitations(text);
+        else bubble.textContent = text;
+        wrap.appendChild(avatar);
+        wrap.appendChild(bubble);
+        messagesEl.appendChild(wrap);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        return bubble;
+    }
+    function addTyping() {
+        const wrap = document.createElement('div');
+        wrap.className = 'msg assistant';
+        wrap.innerHTML = '<div class="avatar">AI</div><div class="bubble"><span class="typing"><span></span><span></span><span></span></span></div>';
+        messagesEl.appendChild(wrap);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        return wrap;
+    }
+    function showError(text) {
+        const banner = document.createElement('div');
+        banner.className = 'error-banner';
+        banner.textContent = text;
+        messagesEl.appendChild(banner);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+    async function send(question) {
+        if (busy) return;
+        const q = (question || '').trim();
+        if (!q) return;
+        if (!selectedCase) {
+            addMessage('assistant', 'Please select a case file above before we get started.');
+            return;
+        }
+        busy = true; sendBtn.disabled = true; inputEl.disabled = true; inputEl.value = '';
+        addMessage('user', q);
+        history.push({ role: 'user', content: q });
+        const typingNode = addTyping();
+        let bubble = null, accumulated = '';
+        const cfg = CASES[selectedCase];
+        const caseContext = cfg.title + ' — relevant documents: ' + cfg.docs.map(d => d.name).join(', ');
+        try {
+            const res = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ messages: history.slice(-12), caseContext }),
+            });
+            if (!res.ok || !res.body) {
+                typingNode.remove();
+                let detail = '';
+                try { detail = (await res.json()).error || ''; } catch {}
+                showError('Request failed (' + res.status + ')' + (detail ? ' — ' + detail : ''));
+                history.pop();
+                return;
+            }
+            typingNode.remove();
+            bubble = addMessage('assistant', '');
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let buf = '';
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                buf += decoder.decode(value, { stream: true });
+                let idx;
+                while ((idx = buf.indexOf('\n')) >= 0) {
+                    const line = buf.slice(0, idx).trim();
+                    buf = buf.slice(idx + 1);
+                    if (!line.startsWith('data:')) continue;
+                    const payload = line.slice(5).trim();
+                    if (!payload) continue;
+                    try {
+                        const evt = JSON.parse(payload);
+                        if (evt.type === 'content_block_delta' && evt.delta && evt.delta.type === 'text_delta') {
+                            accumulated += evt.delta.text;
+                            bubble.innerHTML = renderCitations(accumulated);
+                            messagesEl.scrollTop = messagesEl.scrollHeight;
+                        }
+                    } catch {}
+                }
+            }
+            if (accumulated) history.push({ role: 'assistant', content: accumulated });
+            else bubble.textContent = '(no response)';
+        } catch (err) {
+            typingNode.remove();
+            if (bubble) bubble.remove();
+            showError('Network error — ' + (err.message || 'unable to reach the assistant.'));
+            history.pop();
+        } finally {
+            busy = false; sendBtn.disabled = false; inputEl.disabled = false; inputEl.focus();
+        }
+    }
+    sendBtn.addEventListener('click', () => send(inputEl.value));
+    inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(inputEl.value); } });
+
+    // ═══════════ PANEL 2: CONTRACT REVIEW (staged) ═══════════
+    const CR_DOCS = {
+        services: {
+            stat: '1 page · 220 KB · services_agreement_v3.pdf',
+            html: `
+                <h4>SAMPLE SERVICES AGREEMENT</h4>
+                <div class="doc-row" data-field="parties"><span class="label">Parties:</span> Acme Consulting LLC and Bethesda Retail Group Inc.</div>
+                <div class="doc-row" data-field="term"><span class="label">Term:</span> 12 months, auto-renews unless terminated with 30 days notice</div>
+                <div class="doc-row" data-field="payment"><span class="label">Payment Terms:</span> Net 45, 1.5% late fee per month</div>
+                <div class="doc-row" data-field="liability"><span class="label">Limitation of Liability:</span> Capped at fees paid in prior 12 months</div>
+                <div class="doc-row" data-field="indemnity"><span class="label">Indemnification:</span> Mutual, silent on IP infringement claims</div>
+                <div class="doc-row" data-field="termination"><span class="label">Termination for Convenience:</span> Not present in this draft</div>
+                <div class="doc-row" data-field="law"><span class="label">Governing Law:</span> State of Maryland</div>
+            `,
+            fields: [
+                { key: 'parties', label: 'Parties', value: 'Standard, both entities properly defined', score: 98 },
+                { key: 'term', label: 'Term', value: '12-month auto-renewal, standard notice period', score: 95 },
+                { key: 'payment', label: 'Payment Terms', value: 'Net 45 is looser than the firm’s Net 30 default', score: 78 },
+                { key: 'liability', label: 'Limitation of Liability', value: 'Standard cap, mutual', score: 88 },
+                { key: 'indemnity', label: 'Indemnification', value: 'Missing IP infringement carve-out — flag for review', score: 55 },
+                { key: 'termination', label: 'Termination for Convenience', value: 'Clause absent entirely — recommend adding', score: 30 },
+                { key: 'law', label: 'Governing Law', value: 'Standard, matches firm jurisdiction', score: 97 },
+            ],
+        },
+        lease: {
+            stat: '1 page · 260 KB · commercial_lease_draft.pdf',
+            html: `
+                <h4>SAMPLE COMMERCIAL LEASE</h4>
+                <div class="doc-row" data-field="parties"><span class="label">Landlord / Tenant:</span> Harborview Properties LLC / client entity</div>
+                <div class="doc-row" data-field="rent"><span class="label">Base Rent:</span> $28/sq ft, 3% annual escalation</div>
+                <div class="doc-row" data-field="cam"><span class="label">CAM Charges:</span> Uncapped annual increase</div>
+                <div class="doc-row" data-field="assignment"><span class="label">Assignment / Subletting:</span> Requires landlord consent, not unreasonably withheld</div>
+                <div class="doc-row" data-field="force"><span class="label">Force Majeure:</span> Narrow definition, excludes pandemics</div>
+                <div class="doc-row" data-field="renewal"><span class="label">Renewal Option:</span> One 5-year option at market rate</div>
+            `,
+            fields: [
+                { key: 'parties', label: 'Landlord / Tenant', value: 'Standard, properly identified', score: 97 },
+                { key: 'rent', label: 'Base Rent', value: 'Standard escalation rate for the market', score: 92 },
+                { key: 'cam', label: 'CAM Charges', value: 'No cap on annual increase — flag for negotiation', score: 52 },
+                { key: 'assignment', label: 'Assignment / Subletting', value: 'Standard reasonable-consent language', score: 85 },
+                { key: 'force', label: 'Force Majeure', value: 'Definition excludes pandemics — worth revisiting', score: 58 },
+                { key: 'renewal', label: 'Renewal Option', value: 'Standard single renewal at market rate', score: 90 },
+            ],
+        },
+        nda: {
+            stat: '1 page · 140 KB · mutual_nda_draft.pdf',
+            html: `
+                <h4>SAMPLE MUTUAL NDA</h4>
+                <div class="doc-row" data-field="definition"><span class="label">Confidential Info:</span> Broad definition, standard exclusions</div>
+                <div class="doc-row" data-field="term"><span class="label">Term:</span> 3 years post-termination</div>
+                <div class="doc-row" data-field="residuals"><span class="label">Residuals Clause:</span> Broad carve-out favors the recipient</div>
+                <div class="doc-row" data-field="return"><span class="label">Return / Destruction:</span> Required within 30 days of request</div>
+                <div class="doc-row" data-field="nonsolicit"><span class="label">Non-Solicit:</span> Not included</div>
+            `,
+            fields: [
+                { key: 'definition', label: 'Confidential Info', value: 'Standard scope and exclusions', score: 94 },
+                { key: 'term', label: 'Term', value: 'Standard 3-year survival period', score: 90 },
+                { key: 'residuals', label: 'Residuals Clause', value: 'Unusually broad — favors the other side, flag for review', score: 50 },
+                { key: 'return', label: 'Return / Destruction', value: 'Standard 30-day window', score: 91 },
+                { key: 'nonsolicit', label: 'Non-Solicit', value: 'Clause absent — recommend adding if this is a vendor relationship', score: 35 },
+            ],
+        },
+    };
+    let crCurrent = 'services', crBusy = false;
+    const crMock = document.getElementById('crMock');
+    const crStat = document.getElementById('crStat');
+    const crFieldsContainer = document.getElementById('crFieldsContainer');
+    const crFieldStat = document.getElementById('crFieldStat');
+    const crSummaryBar = document.getElementById('crSummaryBar');
+    const crSummaryText = document.getElementById('crSummaryText');
+    const crRunBtn = document.getElementById('crRunBtn');
+    const crTabsEl = document.getElementById('crTabs');
+
+    function crLoadDoc(key) {
+        crCurrent = key;
+        crMock.innerHTML = CR_DOCS[key].html;
+        crStat.textContent = CR_DOCS[key].stat;
+        crFieldsContainer.innerHTML = `
+            <div class="empty-state">
+                <p>Review the clauses in the contract on the left.</p>
+                <button class="run-btn big-run" data-cr-run>▶ Review Contract</button>
+                <p class="sub">Pick a different sample above to try another contract type.</p>
+            </div>
+        `;
+        crFieldStat.textContent = '— waiting —';
+        crSummaryBar.classList.remove('show');
+        crRunBtn.disabled = false;
+        crRunBtn.textContent = '▶ Review Contract';
+    }
+    crTabsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.doc-tab');
+        if (!btn || crBusy) return;
+        document.querySelectorAll('#crTabs .doc-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        crLoadDoc(btn.dataset.doc);
+    });
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+    async function crProcess() {
+        if (crBusy) return;
+        crBusy = true; crRunBtn.disabled = true; crRunBtn.textContent = '⏳ Reviewing…';
+        const cfg = CR_DOCS[crCurrent];
+        const t0 = performance.now();
+        crFieldsContainer.innerHTML = '';
+        crSummaryBar.classList.remove('show');
+        crFieldStat.textContent = 'Scanning…';
+        const rows = [...crMock.querySelectorAll('.doc-row[data-field]')];
+        const fieldByKey = Object.fromEntries(cfg.fields.map(f => [f.key, f]));
+        let reviewed = 0, flagged = 0;
+        for (const row of rows) {
+            row.classList.add('scanning');
+            await sleep(200 + Math.random() * 120);
+            const key = row.dataset.field;
+            const f = fieldByKey[key];
+            if (f) {
+                row.classList.remove('scanning');
+                const isFlagged = f.score < 65;
+                row.classList.add(isFlagged ? 'flagged' : 'found');
+                if (isFlagged) flagged++;
+                const fieldEl = document.createElement('div');
+                fieldEl.className = 'field' + (isFlagged ? ' flagged' : '');
+                fieldEl.innerHTML = `
+                    <div class="field-label">${f.label}${isFlagged ? ' — ⚠ flagged' : ''}</div>
+                    <div class="field-value">${f.value}</div>
+                    <div class="field-confidence">
+                        <div class="bar"><div class="fill"></div></div>
+                        <div class="pct">${isFlagged ? 'Needs review' : 'Standard'}</div>
+                    </div>
+                `;
+                crFieldsContainer.appendChild(fieldEl);
+                requestAnimationFrame(() => {
+                    fieldEl.classList.add('visible');
+                    fieldEl.querySelector('.fill').style.width = f.score + '%';
+                });
+                reviewed++;
+                crFieldStat.textContent = `${reviewed} of ${cfg.fields.length} clauses`;
+                crFieldsContainer.scrollTop = crFieldsContainer.scrollHeight;
+            } else {
+                row.classList.remove('scanning');
+            }
+            await sleep(70);
+        }
+        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+        crSummaryText.textContent = `✓ Reviewed ${reviewed} clauses in ${elapsed}s — ${flagged} flagged for attorney review`;
+        crSummaryBar.classList.add('show');
+        crFieldStat.textContent = `${reviewed} clauses · ${flagged} flagged`;
+        crBusy = false; crRunBtn.disabled = false; crRunBtn.textContent = '▶ Review Again';
+    }
+    crRunBtn.addEventListener('click', crProcess);
+    crFieldsContainer.addEventListener('click', (e) => { const b = e.target.closest('[data-cr-run]'); if (b) { crProcess(); } });
+    crLoadDoc('services');
+
+    // ═══════════ PANEL 3: DRAFTING SUPPORT (staged) ═══════════
+    const DRAFT_SECTIONS = [
+        { h: 'Recipient & Reference', body: 'Addressed to the client’s registered agent, referencing Invoice #INV-44219 and the underlying Services Agreement dated the matter’s effective date.', src: 'Firm Client Intake Policy' },
+        { h: 'Statement of Facts', body: 'Summarizes the outstanding balance, original due date, and the 1.5% monthly late fee already accruing under the agreement’s payment terms.', src: 'Services Agreement (client file)' },
+        { h: 'Demand', body: 'Demands payment in full within 10 business days, citing the statutory default interest rate that applies once notice has been given.', src: 'Md. Com. Law § 14-302 (Sample)' },
+        { h: 'Reservation of Rights', body: 'Reserves the right to pursue collection, suspend further services, and seek attorneys’ fees if payment is not received by the deadline.', src: 'Firm Memo — Standard Reservations' },
+        { h: 'Closing', body: 'Provides a direct contact for payment arrangements and notes that this letter does not waive any other rights or remedies available under the agreement.', src: 'Firm Memo — Standard Reservations' },
+    ];
+    const draftGrid = document.getElementById('draftGrid');
+    const draftRunBtn = document.getElementById('draftRunBtn');
+    let draftBusy = false;
+    async function runDraft() {
+        if (draftBusy) return;
+        draftBusy = true; draftRunBtn.disabled = true; draftRunBtn.textContent = '⏳ Drafting…';
+        draftGrid.innerHTML = '';
+        for (const sec of DRAFT_SECTIONS) {
+            await sleep(380);
+            const el = document.createElement('div');
+            el.className = 'draft-section';
+            el.innerHTML = `<h4>${sec.h}</h4><p>${sec.body}</p><span class="src">📎 ${sec.src}</span>`;
+            draftGrid.appendChild(el);
+            requestAnimationFrame(() => el.classList.add('visible'));
+        }
+        draftBusy = false; draftRunBtn.disabled = false; draftRunBtn.textContent = '▶ Generate Again';
+    }
+    draftRunBtn.addEventListener('click', runDraft);
+
+    document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});
+</script>
+
+    <script>
+        document.querySelectorAll('.nav-dropdown-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var dd = btn.closest('.nav-dropdown');
+                var wasOpen = dd.classList.contains('open');
+                document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+                if (!wasOpen) dd.classList.add('open');
+            });
+        });
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 const ALLOWED_ORIGINS = [
+  'https://bethesdaai.org',
+  'https://www.bethesdaai.org',
   'https://baltimoreai.org',
   'https://www.baltimoreai.org',
   'http://localhost:8000',
@@ -131,6 +133,9 @@ export default {
         'content-type': 'application/json',
         'x-api-key': env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
+        ...(env.ANTHROPIC_WORKSPACE_ID
+          ? { 'anthropic-workspace-id': env.ANTHROPIC_WORKSPACE_ID }
+          : {}),
       },
       body: JSON.stringify({
         model: MODEL,

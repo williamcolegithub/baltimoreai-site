@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Processor Demo — Scanned Forms to Structured Data — BaltimoreAI</title>
-    <link rel="canonical" href="https://baltimoreai.org/demos/document-processor.html">
+    <title>Document Processor Demo — Scanned Forms to Structured Data — BethesdaAI</title>
+    <link rel="canonical" href="https://bethesdaai.org/demos/document-processor.html">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="BaltimoreAI">
-    <meta property="og:title" content="Document Processor Demo — Scanned Forms to Structured Data — BaltimoreAI">
+    <meta property="og:site_name" content="Bethesda AI">
+    <meta property="og:title" content="Document Processor Demo — Scanned Forms to Structured Data — BethesdaAI">
     <meta property="og:description" content="Watch our document processor pull structured fields out of scanned forms in seconds.">
-    <meta property="og:url" content="https://baltimoreai.org/demos/document-processor.html">
-    <meta property="og:image" content="https://baltimoreai.org/assets/brand/og-image.png">
+    <meta property="og:url" content="https://bethesdaai.org/demos/document-processor.html">
+    <meta property="og:image" content="https://bethesdaai.org/assets/brand/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Document Processor Demo — Scanned Forms to Structured Data — BaltimoreAI">
+    <meta name="twitter:title" content="Document Processor Demo — Scanned Forms to Structured Data — BethesdaAI">
     <meta name="twitter:description" content="Watch our document processor pull structured fields out of scanned forms in seconds.">
-    <meta name="twitter:image" content="https://baltimoreai.org/assets/brand/og-image.png">
+    <meta name="twitter:image" content="https://bethesdaai.org/assets/brand/og-image.png">
     <meta name="description" content="Watch our document processor pull structured fields out of scanned forms in seconds.">
-    <link rel="icon" type="image/png" href="../assets/brand/logo-mark.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='6' y='52' font-family=%22Georgia,%20'Times%20New%20Roman',%20serif%22 font-weight='900' font-size='54' fill='%2318161c'%3EB%3C/text%3E%3Ccircle cx='53' cy='9' r='6' fill='%23dd6b30'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-teal: #0E6E8C;
-            --brand-teal-dark: #0A5470;
-            --brand-teal-light: #d4e6ec;
-            --brand-teal-bg: #f1f6f8;
-            --page-bg: #ffffff;
-            --section-alt: #f7f9fa;
-            --card-bg: #ffffff;
-            --border: #e3eaee;
-            --border-strong: #c9d6dd;
-            --ink: #0F1A20;
-            --ink-muted: #4f6772;
-            --ink-faint: #8a99a4;
+            --brand-teal: #18161c;
+            --brand-teal-dark: #0c0a0f;
+            --brand-teal-light: #e5e0d6;
+            --brand-teal-bg: #f6f3ec;
+            --brand-accent: #dd6b30;
+            --brand-accent-dark: #c1571f;
+            --page-bg: #fdfcf9;
+            --section-alt: #f6f3ec;
+            --card-bg: #fdfcf9;
+            --border: #e2ddd0;
+            --border-strong: #c8c0ac;
+            --ink: #18161c;
+            --ink-muted: #5b564e;
+            --ink-faint: #96907f;
             --white: #ffffff;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,6 +48,15 @@
         }
         h1, h2, h3 { font-family: 'Roboto Slab', 'Rockwell', Georgia, serif; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); }
         .navbar-brand { font-family: 'Roboto Slab', 'Rockwell', Georgia, serif; }
+        .logo-mark {
+            position: relative; display: inline-flex; flex-shrink: 0;
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 900;
+            line-height: 1; color: var(--brand-teal); font-size: 1.85rem;
+        }
+        .logo-mark::after {
+            content: ''; position: absolute; top: -1px; right: -9px;
+            width: 8px; height: 8px; border-radius: 50%; background: var(--brand-accent);
+        }
         a { color: inherit; }
 
         .navbar {
@@ -64,7 +75,7 @@
             text-decoration: none; letter-spacing: -0.5px;
         }
         .navbar-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
-        .navbar-brand .accent { color: var(--brand-teal); }
+        .navbar-brand .accent { color: var(--brand-accent); }
         .navbar-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .navbar-links a { color: var(--ink-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.2s; }
         .navbar-links a:hover, .navbar-links a.active { color: var(--brand-teal); }
@@ -267,6 +278,46 @@
             .navbar-links { gap: 1rem; }
             .navbar-links li:not(:last-child) { display: none; }
         }
+
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle {
+            background: none; border: none; cursor: pointer; font: inherit;
+            color: var(--ink-muted); font-size: 0.95rem; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 4px; padding: 0;
+            transition: color 0.2s;
+        }
+        .nav-dropdown-toggle:hover,
+        .nav-dropdown-toggle.active,
+        .nav-dropdown.open .nav-dropdown-toggle { color: var(--brand-teal); }
+        .nav-dropdown-toggle .caret { font-size: 0.65em; transition: transform 0.2s; }
+        .nav-dropdown.open .nav-dropdown-toggle .caret { transform: rotate(180deg); }
+        .nav-dropdown-menu {
+            list-style: none; position: absolute; top: calc(100% + 18px); left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.14); padding: 8px; min-width: 200px;
+            opacity: 0; visibility: hidden; transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+            z-index: 1100;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown.open .nav-dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
+        .nav-dropdown-menu li { list-style: none; margin: 0; }
+        .nav-dropdown-menu a {
+            display: block; padding: 9px 14px; border-radius: 6px; white-space: nowrap;
+            font-size: 0.9rem; font-weight: 600; color: var(--ink-muted); text-decoration: none;
+        }
+        .nav-dropdown-menu a:hover { background: var(--section-alt); color: var(--brand-teal); }
+        @media (max-width: 768px) {
+            .nav-dropdown-menu {
+                position: static; transform: none; opacity: 1; visibility: visible;
+                box-shadow: none; border: none; background: none; padding: 4px 0 0 14px;
+                display: none; min-width: 0;
+            }
+            .nav-dropdown.open .nav-dropdown-menu { display: block; }
+            .nav-dropdown-toggle { width: 100%; justify-content: space-between; }
+        }
     </style>
 </head>
 <body>
@@ -274,12 +325,18 @@
 <nav class="navbar">
     <div class="navbar-inner">
         <a href="../index.html" class="navbar-brand">
-            <img src="../assets/brand/logo-mark.png" alt="BaltimoreAI logo">
-            <span>Baltimore<span class="accent">AI</span></span>
+            <span class="logo-mark" aria-hidden="true">B</span>
+            <span>Bethesda<span class="accent">AI</span></span>
         </a>
         <ul class="navbar-links">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="../demos.html" class="active">Demos</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle active" type="button" aria-haspopup="true" aria-expanded="false">Demos <span class="caret">▾</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="../demos.html">All Demos</a></li>
+                    <li><a href="legal.html">Legal Assistant Demo</a></li>
+                </ul>
+            </li>
             <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
         </ul>
     </div>
@@ -344,7 +401,7 @@
 </section>
 
 <footer>
-    <p>&copy; <span class="yr">2026</span> Kimura Consulting LLC | <a href="https://baltimoreai.org">BaltimoreAI.org</a></p>
+    <p>&copy; <span class="yr">2026</span> Kimura Consulting LLC | <a href="https://bethesdaai.org">BethesdaAI.org</a></p>
 </footer>
 
 <script>
@@ -549,5 +606,20 @@
 </script>
 
 <script id="yr-script">document.querySelectorAll(".yr").forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+    <script>
+        document.querySelectorAll('.nav-dropdown-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var dd = btn.closest('.nav-dropdown');
+                var wasOpen = dd.classList.contains('open');
+                document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+                if (!wasOpen) dd.classList.add('open');
+            });
+        });
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+        });
+    </script>
+
 </body>
 </html>

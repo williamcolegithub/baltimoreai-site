@@ -3,4 +3,4 @@ Allow: /
 Disallow: /privacy.html
 Disallow: /terms.html
 
-Sitemap: https://baltimoreai.org/sitemap.xml
+Sitemap: https://bethesdaai.org/sitemap.xml

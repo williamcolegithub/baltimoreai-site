@@ -1,17 +1,19 @@
-name = "baltimoreai-demos"
-main = "src/worker.js"
+name = "baltimoreai-legal-demo"
+main = "src/worker-legal.js"
 compatibility_date = "2025-01-15"
 
 # ─── Layer 1: Per-IP rate limit ────────────────────────────────
-# 8 requests per 60 seconds per IP. namespace_id is an arbitrary integer
-# (just keep it stable across deploys).
+# 8 requests per 60 seconds per IP. namespace_id is an arbitrary integer,
+# distinct from the main demo worker's (must be unique per binding).
 [[unsafe.bindings]]
 name = "RATE_LIMITER"
 type = "ratelimit"
-namespace_id = "1001"
+namespace_id = "1002"
 simple = { limit = 8, period = 60 }
 
 # ─── Layer 2: Daily global cap (KV-backed counter) ─────────────
+# This worker is separate from the main demo worker, so it has its own
+# KV namespace (DEMO_LIMITS_legal).
 [[kv_namespaces]]
 binding = "DEMO_LIMITS"
-id = "9b2418c7a56147de8ce7d2cbc8f50321"
+id = "21c7640acca04a7e8fb5649bbf0091d4"
