@@ -1,0 +1,9 @@
+# Cloudflare Wrangler local state (holds cached account details)
+.wrangler/
+
+# Local working notes and drafts that must not be published
+_local/
+
+# Editor and operating system files
+.vscode/
+.DS_Store
