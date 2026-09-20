@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaltimoreAI Text Assistant — Sign Up</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Sign up for BaltimoreAI Text Assistant, a paid text-message assistant from Kimura Consulting LLC doing business as BaltimoreAI.">
+    <link rel="icon" type="image/png" href="assets/brand/logo-mark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-teal: #0E6E8C;
+            --brand-teal-dark: #0A5470;
+            --brand-teal-light: #d4e6ec;
+            --brand-teal-bg: #f1f6f8;
+            --page-bg: #ffffff;
+            --section-alt: #f7f9fa;
+            --card-bg: #ffffff;
+            --border: #e3eaee;
+            --border-strong: #c9d6dd;
+            --ink: #0F1A20;
+            --ink-muted: #4f6772;
+            --ink-faint: #8a99a4;
+            --white: #ffffff;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--ink-muted);
+            background-color: var(--page-bg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', 'Rockwell', Georgia, serif;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--ink);
+        }
+
+        a { color: inherit; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+        .navbar-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 68px;
+        }
+        .navbar-brand {
+            font-family: 'Roboto Slab', 'Rockwell', Georgia, serif;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 1.2rem; font-weight: 800;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .navbar-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .navbar-brand span { color: var(--brand-teal); }
+        .navbar-links {
+            display: flex; gap: 2rem;
+            list-style: none; align-items: center;
+        }
+        .navbar-links a {
+            color: var(--ink-muted);
+            text-decoration: none;
+            font-size: 0.95rem; font-weight: 600;
+            transition: color 0.2s;
+        }
+        .navbar-links a:hover, .navbar-links a.active { color: var(--brand-teal); }
+
+        /* --- PAGE --- */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+        h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 10px; }
+        .lede { font-size: 1.05rem; margin-bottom: 8px; }
+        h2 { font-size: 1.3rem; margin: 40px 0 12px; }
+        h3 { font-size: 1rem; margin: 22px 0 8px; }
+        p { margin-bottom: 14px; }
+        ul { margin: 0 0 16px 22px; }
+        li { margin-bottom: 6px; }
+
+        .coming-soon {
+            display: inline-block;
+            background: var(--brand-teal-bg);
+            border: 1px solid var(--brand-teal-light);
+            color: var(--brand-teal-dark);
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .sample {
+            background: var(--section-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+        .bubble {
+            max-width: 85%;
+            padding: 9px 13px;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            font-size: 0.94rem;
+            line-height: 1.45;
+        }
+        .bubble.them {
+            background: var(--white);
+            border: 1px solid var(--border-strong);
+            color: var(--ink);
+        }
+        .bubble.you {
+            background: var(--brand-teal);
+            color: var(--white);
+            margin-left: auto;
+        }
+        .bubble .who {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            opacity: 0.75;
+            margin-bottom: 2px;
+        }
+
+        /* --- FORM --- */
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-strong);
+            border-radius: 12px;
+            padding: 26px;
+            margin-top: 12px;
+        }
+        label { display: block; font-weight: 600; color: var(--ink); font-size: 0.92rem; margin-bottom: 6px; }
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid var(--border-strong);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--ink);
+            background: var(--white);
+            margin-bottom: 18px;
+        }
+        input[type="text"]:focus, input[type="tel"]:focus {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 1px;
+        }
+        .consent {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--brand-teal-bg);
+            border: 1px solid var(--brand-teal-light);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+        .consent input[type="checkbox"] {
+            width: 20px; height: 20px;
+            margin-top: 2px;
+            flex: 0 0 auto;
+            accent-color: var(--brand-teal);
+        }
+        .consent label {
+            font-weight: 400;
+            color: var(--ink);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+        .consent a { color: var(--brand-teal-dark); font-weight: 600; }
+        button[type="submit"] {
+            background: var(--brand-teal);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            padding: 13px 26px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover { background: var(--brand-teal-dark); }
+        .form-note { font-size: 0.86rem; color: var(--ink-faint); margin: 12px 0 0; }
+        .notice {
+            display: none;
+            margin-top: 18px;
+            padding: 16px;
+            border: 1px solid var(--border-strong);
+            border-left: 4px solid var(--brand-teal);
+            background: var(--section-alt);
+            border-radius: 6px;
+            color: var(--ink);
+            font-size: 0.95rem;
+        }
+        .notice.show { display: block; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--page-bg);
+            color: var(--ink-faint);
+            padding: 48px 20px 32px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .footer-brand img { width: 40px; height: 40px; border-radius: 8px; }
+        .footer-brand .name {
+            font-family: 'Roboto Slab', Georgia, serif;
+            font-size: 1.1rem; font-weight: 800; color: var(--ink);
+            letter-spacing: -0.3px;
+        }
+        .footer-brand .name .accent { color: var(--brand-teal); }
+        .footer-tag { color: var(--ink-muted); font-size: 0.92rem; max-width: 320px; line-height: 1.55; }
+        .footer-col h4 {
+            font-family: 'Roboto Slab', Georgia, serif;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ink-faint);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--ink-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--brand-teal); }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 32px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            color: var(--ink-faint);
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 1.2rem; }
+            .navbar-links { gap: 1.2rem; }
+            .navbar-links a { font-size: 0.88rem; }
+            .container { padding: 100px 18px 50px; }
+            h1 { font-size: 1.75rem; }
+            .form-card { padding: 20px 16px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+            .footer-bottom { flex-direction: column; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/brand/logo-mark.png" alt="BaltimoreAI logo">
+                <span style="color: var(--ink);">Baltimore</span><span>AI</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="demos.html">Demos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>BaltimoreAI Text Assistant</h1>
+        <p class="lede">An assistant you talk to by text message. From BaltimoreAI (Kimura Consulting LLC) in Baltimore, Maryland.</p>
+        <p class="coming-soon">Coming soon. Sign-ups are not open yet.</p>
+
+        <h2>What it is</h2>
+        <p>You text a question or a task. The assistant texts back. There is no app to install.</p>
+        <p>People use it to:</p>
+        <ul>
+            <li>Set reminders and get them by text.</li>
+            <li>Keep lists and notes and add to them by text.</li>
+            <li>Plan a day, a trip, or a project.</li>
+            <li>Ask questions and get a short written answer.</li>
+        </ul>
+        <p>Messages come from <strong>+1 (844) 925-2512</strong>. Save that number so you know it is us.</p>
+        <p>Replies are written by an AI model. They can be wrong. It is not medical, legal, or financial advice.</p>
+
+        <h2>A sample exchange</h2>
+        <div class="sample">
+            <div class="bubble you"><span class="who">You</span>Add oat milk and coffee filters to my grocery list.</div>
+            <div class="bubble them"><span class="who">BaltimoreAI</span>Added. Your grocery list now has 6 items. Text LIST to see it.</div>
+            <div class="bubble you"><span class="who">You</span>Remind me Thursday at 4pm to call the pharmacy.</div>
+            <div class="bubble them"><span class="who">BaltimoreAI</span>Reminder set for Thu at 4:00 PM: call the pharmacy.</div>
+        </div>
+
+        <h2>Sign up</h2>
+        <p>This is a paid service. Pricing will be shown at sign-up before any charge. There is no charge for filling in this form.</p>
+
+        <div class="form-card">
+            <form id="signup-form">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+
+                <label for="mobile">Mobile number</label>
+                <input type="tel" id="mobile" name="mobile" autocomplete="tel" placeholder="(410) 555-0123" required>
+
+                <div class="consent">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I agree to receive recurring automated text messages from BaltimoreAI (Kimura Consulting LLC) at the number I provided, including replies to my messages and reminders I ask for. Consent is not a condition of purchase. Message frequency varies with my use. Message and data rates may apply. Reply STOP to cancel, HELP for help. See the <a href="terms.html">Terms &amp; Conditions</a> and the <a href="privacy.html">Privacy Policy</a>.</label>
+                </div>
+
+                <button type="submit">Sign up</button>
+                <p class="form-note">Messages come from +1 (844) 925-2512. Reply STOP at any time to cancel. Reply HELP for help.</p>
+            </form>
+
+            <div class="notice" id="notice" role="status" aria-live="polite">
+                <strong>Sign-ups are not open yet.</strong> We have not saved your number and will not text you. Nothing was sent anywhere. To hear when the service opens, email <a href="mailto:info@baltimoreai.org">info@baltimoreai.org</a>.
+            </div>
+        </div>
+
+        <h2>Stopping and getting help</h2>
+        <p>Reply <strong>STOP</strong> to any message to cancel. You get one confirmation message and then nothing more. Reply <strong>START</strong> to rejoin. Reply <strong>HELP</strong> for help.</p>
+        <p>You can also reach a person: <a href="mailto:info@baltimoreai.org">info@baltimoreai.org</a> or <a href="tel:4108261065">(410) 826-1065</a>.</p>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">
+                    <img src="assets/brand/logo-mark.png" alt="BaltimoreAI logo">
+                    <div class="name">Baltimore<span class="accent">AI</span></div>
+                </div>
+                <p class="footer-tag">We build AI systems for Baltimore organizations. BaltimoreAI is the trade name of Kimura Consulting LLC.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Get in touch</h4>
+                <a href="tel:4108261065">(410) 826-1065</a>
+                <a href="mailto:info@baltimoreai.org">info@baltimoreai.org</a>
+            </div>
+            <div class="footer-col">
+                <h4>The site</h4>
+                <a href="index.html">Home</a>
+                <a href="demos.html">Demos</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Kimura Consulting LLC</span>
+            <span>Serving Baltimore, Maryland</span>
+        </div>
+    </footer>
+
+    <script>
+        // No backend yet. This form sends nothing anywhere.
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('notice').classList.add('show');
+        });
+    </script>
+</body>
+</html>

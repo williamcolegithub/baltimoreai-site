@@ -25,120 +25,219 @@
         })(window, document, "clarity", "script", "w8mauz9oq6");
     </script>
     <!-- End Microsoft Clarity -->
-    <title>SmartText Assistant – Privacy Policy</title>
-    <meta name="robots" content="noindex, nofollow">
+    <title>Privacy Policy — BaltimoreAI Text Assistant</title>
+    <meta name="description" content="Privacy policy for BaltimoreAI Text Assistant and baltimoreai.org, operated by Kimura Consulting LLC doing business as BaltimoreAI.">
+    <link rel="canonical" href="https://baltimoreai.org/privacy.html">
+    <link rel="icon" type="image/png" href="assets/brand/logo-mark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --brand-teal: #0E6E8C;
+            --brand-teal-dark: #0A5470;
+            --brand-teal-light: #d4e6ec;
+            --brand-teal-bg: #f1f6f8;
+            --page-bg: #ffffff;
+            --section-alt: #f7f9fa;
+            --border: #e3eaee;
+            --border-strong: #c9d6dd;
+            --ink: #0F1A20;
+            --ink-muted: #4f6772;
+            --ink-faint: #8a99a4;
+            --white: #ffffff;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: Georgia, 'Times New Roman', serif;
-            color: #1a1a1a;
-            background: #fafafa;
-            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.65;
+            color: var(--ink-muted);
+            background: var(--page-bg);
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
+        h1, h2 {
+            font-family: 'Roboto Slab', 'Rockwell', Georgia, serif;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--ink);
         }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
+        a { color: var(--brand-teal-dark); }
+
+        .navbar {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
         }
-        .last-updated {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 48px;
+        .navbar-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 68px;
         }
-        h2 {
-            font-size: 1.15rem;
-            margin-top: 36px;
-            margin-bottom: 12px;
+        .navbar-brand {
+            font-family: 'Roboto Slab', 'Rockwell', Georgia, serif;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 1.2rem; font-weight: 800;
+            color: var(--ink); text-decoration: none; letter-spacing: -0.5px;
         }
-        p {
-            margin-bottom: 16px;
+        .navbar-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .navbar-brand .accent { color: var(--brand-teal); }
+        .navbar-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+        .navbar-links a {
+            color: var(--ink-muted); text-decoration: none;
+            font-size: 0.95rem; font-weight: 600;
+        }
+        .navbar-links a:hover, .navbar-links a.active { color: var(--brand-teal); }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 48px 20px 70px; }
+        h1 { font-size: 2rem; margin-bottom: 6px; }
+        .last-updated { color: var(--ink-faint); font-size: 0.9rem; margin-bottom: 34px; }
+        h2 { font-size: 1.15rem; margin-top: 34px; margin-bottom: 10px; }
+        p { margin-bottom: 14px; }
+        ul { margin: 0 0 16px 22px; }
+        li { margin-bottom: 6px; }
+        .callout {
+            background: var(--brand-teal-bg);
+            border: 1px solid var(--brand-teal-light);
+            border-left: 4px solid var(--brand-teal);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 20px 0 24px;
+            color: var(--ink);
             font-size: 1rem;
         }
-        a { color: #1a1a1a; }
-        ul {
-            margin-bottom: 16px;
-            padding-left: 24px;
-        }
-        li {
-            margin-bottom: 6px;
-            font-size: 1rem;
-        }
+        .callout p:last-child { margin-bottom: 0; }
         .contact {
-            margin-top: 48px;
-            padding: 24px;
-            background: #f0f0f0;
-            border-radius: 6px;
+            margin-top: 44px;
+            padding: 22px;
+            background: var(--section-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
         }
-        .contact p { margin-bottom: 4px; }
+        .contact h2 { margin-top: 0; }
+        .contact p { margin-bottom: 6px; }
+
+        footer {
+            background: var(--page-bg);
+            color: var(--ink-faint);
+            padding: 30px 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        footer a { color: var(--ink-muted); text-decoration: none; }
+        footer a:hover { color: var(--brand-teal); }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 1.2rem; }
+            .navbar-links { gap: 1rem; }
+            .navbar-links a { font-size: 0.88rem; }
+            .container { padding: 34px 18px 50px; }
+            h1 { font-size: 1.6rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/brand/logo-mark.png" alt="BaltimoreAI logo">
+                <span>Baltimore</span><span class="accent">AI</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy.html" class="active">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last updated: February 24, 2026</p>
+        <p class="last-updated">Last updated: September 19, 2026</p>
 
-        <h2>1. Overview</h2>
-        <p>SmartText Assistant ("the Service") is operated by Kimura Consulting LLC, doing business as BaltimoreAI ("we", "us", "our"). This Privacy Policy describes how we collect, use, store, and protect your personal information when you use our SMS-based assistant service.</p>
+        <h2>1. Who we are</h2>
+        <p>BaltimoreAI Text Assistant ("the service") is operated by Kimura Consulting LLC, doing business as BaltimoreAI ("we", "us", "our"), in Baltimore, Maryland. This policy covers the text message service. Section 10 covers the rest of baltimoreai.org.</p>
 
-        <h2>2. Information We Collect</h2>
-        <p>We collect the following information:</p>
+        <div class="callout">
+            <p>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties.</p>
+        </div>
+
+        <h2>2. What we collect</h2>
         <ul>
-            <li><strong>Phone number:</strong> Provided by you during signup, used to send and receive SMS messages.</li>
-            <li><strong>Message content:</strong> The text messages you send to and receive from the Service, stored to maintain conversation context.</li>
-            <li><strong>Usage data:</strong> Timestamps, message frequency, and feature usage patterns.</li>
-            <li><strong>Preferences:</strong> Any personal preferences you share with the Service, such as dietary restrictions, workout goals, or scheduling preferences.</li>
+            <li><strong>Mobile number.</strong> The number you enter on the sign-up form.</li>
+            <li><strong>Name.</strong> The name you enter on the sign-up form.</li>
+            <li><strong>Message content.</strong> The text messages you send us and the replies we send you.</li>
+            <li><strong>Saved items.</strong> Lists, tasks, notes, reminders, and profile details you ask the assistant to keep.</li>
+            <li><strong>Usage timestamps.</strong> When messages are sent and received.</li>
         </ul>
 
-        <h2>3. How We Use Your Information</h2>
-        <p>Your information is used to:</p>
+        <h2>3. How we use it</h2>
         <ul>
-            <li>Deliver the Service and respond to your messages</li>
-            <li>Maintain conversation history for context-aware responses</li>
-            <li>Send scheduled reminders and check-ins you have configured</li>
-            <li>Improve the quality and relevance of responses</li>
+            <li>To reply to your messages.</li>
+            <li>To keep the thread of a conversation so replies make sense.</li>
+            <li>To send the reminders and check-ins you ask for.</li>
+            <li>To keep the lists, notes, and other items you save.</li>
+            <li>To answer your support requests and to fix problems with the service.</li>
+        </ul>
+        <p>We do not sell your information. We do not use it for advertising.</p>
+
+        <h2>4. AI processing</h2>
+        <p>Your messages are processed by Anthropic's Claude models through Amazon Bedrock, a service of Amazon Web Services, in the United States.</p>
+        <p>Your message content is not used to train models.</p>
+
+        <h2>5. How long we keep things</h2>
+        <ul>
+            <li><strong>Conversation history:</strong> kept for 90 days, then deleted automatically.</li>
+            <li><strong>Saved items</strong> (lists, tasks, notes, profile details, reminders): kept until you delete them or close your account.</li>
+            <li><strong>Operational logs:</strong> we keep the first 50 characters of messages for 30 days for troubleshooting.</li>
         </ul>
 
-        <h2>4. AI Processing</h2>
-        <p>Your messages are processed by AI language models hosted on Amazon Web Services (AWS) to generate responses. Message content is sent to AWS Bedrock for processing and is handled in accordance with AWS's data processing terms. We do not use your messages to train AI models.</p>
-
-        <h2>5. Data Storage and Security</h2>
-        <p>Your data is stored on AWS infrastructure in the United States. We implement reasonable technical and organizational measures to protect your information, including encryption in transit and at rest. Conversation history is retained to provide continuity in the Service and is deleted upon account termination or upon request.</p>
-
-        <h2>6. Data Sharing</h2>
-        <p>We do not sell, rent, or share your personal information with third parties for marketing purposes. Your information may be shared only in the following circumstances:</p>
+        <h2>6. Who we share it with</h2>
+        <p>We share your information only in two cases:</p>
         <ul>
-            <li><strong>Service providers:</strong> AWS processes your data as part of delivering the Service infrastructure.</li>
-            <li><strong>Legal requirements:</strong> If required by law, regulation, or legal process.</li>
+            <li><strong>Service providers</strong> that we need to run the service, such as Amazon Web Services, which hosts the service and processes messages through Amazon Bedrock. They may use the information only to provide the service to us.</li>
+            <li><strong>When the law requires it</strong>, such as a valid legal process.</li>
         </ul>
+        <p>We do not sell, rent, or trade your information. We do not share it for anyone's marketing or advertising.</p>
 
-        <h2>7. Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-            <li><strong>Opt out:</strong> Reply STOP to any message to stop receiving all messages.</li>
-            <li><strong>Request data deletion:</strong> Contact us to request deletion of your data.</li>
-            <li><strong>Access your data:</strong> Contact us to request a copy of the data we hold about you.</li>
-        </ul>
+        <h2>7. How to opt out</h2>
+        <p>Reply <strong>STOP</strong> to any message. We send one confirmation message and then send you nothing more. Reply <strong>START</strong> to rejoin.</p>
 
-        <h2>8. Data Retention</h2>
-        <p>We retain your conversation history and personal data for as long as your account is active. You may request deletion at any time. Upon account termination, your data will be deleted within 30 days.</p>
+        <h2>8. Access and deletion</h2>
+        <p>Email <a href="mailto:info@baltimoreai.org">info@baltimoreai.org</a> or call <a href="tel:4108261065">(410) 826-1065</a> to ask for a copy of what we hold about you, or to ask us to delete it. We will confirm when it is done.</p>
 
-        <h2>9. Children's Privacy</h2>
-        <p>The Service is not directed to individuals under the age of 18. We do not knowingly collect personal information from children.</p>
+        <h2>9. Children</h2>
+        <p>The service is for people 18 and over. We do not knowingly collect information from anyone under 18. If you believe a child has given us information, contact us and we will delete it.</p>
 
-        <h2>10. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. If we make material changes, we will notify you via SMS. Continued use of the Service after changes constitutes acceptance of the updated policy.</p>
+        <h2>10. This website</h2>
+        <p>This section covers the rest of baltimoreai.org, separately from the text message service.</p>
+        <p><strong>Live demos.</strong> Some pages under baltimoreai.org/demos run a live AI demo. What you type there is sent to a Cloudflare Worker we run. The Worker checks that the request came from our own site, applies a per-visitor rate limit keyed on your IP address, counts requests against a daily total, and then forwards your text to Anthropic's API, which generates the answer. The Worker does not write your text to storage. The only thing it stores is a daily counter of how many demo requests were made, which holds no message content.</p>
+        <p><strong>Contact form.</strong> The contact form on the home page is handled by Formspree. The name, email address, service selection, and description you enter are sent to Formspree, which delivers them to us by email.</p>
+        <p><strong>Analytics.</strong> The home page, the demos index, and these two legal pages load the Meta Pixel and Microsoft Clarity. These are third-party tools that record page visits and how visitors use the page. They are operated by Meta and by Microsoft under their own privacy policies.</p>
+        <p><strong>Other embeds.</strong> The home page embeds YouTube video and loads fonts from Google Fonts. Those requests go to Google.</p>
+        <p>None of this is connected to the text message service, and none of it receives mobile numbers or text message content.</p>
+
+        <h2>11. Changes to this policy</h2>
+        <p>We may update this policy. If we make a material change we will tell you by text message and update the date at the top of this page.</p>
+
+        <h2>12. Terms</h2>
+        <p>The <a href="terms.html">SMS Terms &amp; Conditions</a> cover the rules of the text message program.</p>
 
         <div class="contact">
-            <h2 style="margin-top: 0;">11. Contact Us</h2>
-            <p><strong>Customer care:</strong> Reply HELP to any message</p>
+            <h2>13. Contact us</h2>
             <p><strong>Email:</strong> <a href="mailto:info@baltimoreai.org">info@baltimoreai.org</a></p>
-            <p><strong>Opt out:</strong> Reply STOP to any message</p>
+            <p><strong>Phone:</strong> <a href="tel:4108261065">(410) 826-1065</a></p>
+            <p><strong>By text:</strong> reply HELP to any message.</p>
+            <p><strong>Company:</strong> Kimura Consulting LLC, doing business as BaltimoreAI, Baltimore, Maryland.</p>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kimura Consulting LLC | <a href="index.html">BaltimoreAI.org</a> | <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+    </footer>
 </body>
 </html>
