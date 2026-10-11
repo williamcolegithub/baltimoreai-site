@@ -69,16 +69,16 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="BaltimoreAI">
     <meta property="og:title" content="BaltimoreAI — AI Consulting & Custom AI Systems for Baltimore Businesses">
-    <meta property="og:description" content="BaltimoreAI builds custom AI systems for Baltimore businesses, universities, and agencies: document processing, knowledge assistants, and workflow automation. You work directly with the engineers. Free 90-minute audit. Est. 2023.">
+    <meta property="og:description" content="About half our audits end with &quot;you don&#39;t need this.&quot; BaltimoreAI builds custom AI systems for Baltimore businesses, universities and labs: document processing, knowledge assistants, workflow automation. You work with the engineers who build it. Free 90-minute audit, on site.">
     <meta property="og:url" content="https://baltimoreai.org/">
     <meta property="og:image" content="https://baltimoreai.org/assets/brand/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BaltimoreAI — AI Consulting & Custom AI Systems for Baltimore Businesses">
-    <meta name="twitter:description" content="BaltimoreAI builds custom AI systems for Baltimore businesses, universities, and agencies: document processing, knowledge assistants, and workflow automation. You work directly with the engineers. Free 90-minute audit. Est. 2023.">
+    <meta name="twitter:description" content="About half our audits end with &quot;you don&#39;t need this.&quot; BaltimoreAI builds custom AI systems for Baltimore businesses, universities and labs: document processing, knowledge assistants, workflow automation. You work with the engineers who build it. Free 90-minute audit, on site.">
     <meta name="twitter:image" content="https://baltimoreai.org/assets/brand/og-image.png">
-    <meta name="description" content="BaltimoreAI builds custom AI systems for Baltimore businesses, universities, and agencies: document processing, knowledge assistants, and workflow automation. You work directly with the engineers. Free 90-minute audit. Est. 2023.">
+    <meta name="description" content="About half our audits end with &quot;you don&#39;t need this.&quot; BaltimoreAI builds custom AI systems for Baltimore businesses, universities and labs: document processing, knowledge assistants, workflow automation. You work with the engineers who build it. Free 90-minute audit, on site.">
     <link rel="icon" type="image/png" href="assets/brand/logo-mark.png">
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://i.ytimg.com">
@@ -222,7 +222,7 @@
             position: relative;
             background: var(--brand-teal);
             color: var(--white);
-            padding: 170px 2rem 90px;
+            padding: 140px 2rem 48px;
             text-align: center;
             overflow: hidden;
         }
@@ -256,6 +256,17 @@
         }
 
         .hero h1 + .cta-button { margin-top: 26px; }
+        .hero-counter {
+            font-size: 1.45rem; font-weight: 700; line-height: 1.35;
+            text-wrap: balance;
+            color: var(--white); max-width: 660px; margin: 0 auto 30px;
+        }
+        .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .hero-proof {
+            font-size: 0.84rem; letter-spacing: 0.3px; margin: 22px auto 0;
+            max-width: 780px; color: rgba(255,255,255,0.72);
+        }
+        .hero-proof a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
         .hero-est {
             display: inline-block; margin-bottom: 18px;
             padding: 6px 14px; border-radius: 20px;
@@ -354,6 +365,21 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 16px 32px rgba(7,62,84,0.35);
             color: var(--brand-teal-dark);
+        }
+
+        /* quieter second door in the hero: same shape, much less weight */
+        .hero .cta-button-ghost {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.5);
+            box-shadow: none;
+            font-weight: 700;
+        }
+        .hero .cta-button-ghost:hover {
+            background: rgba(255,255,255,0.14);
+            color: var(--white);
+            box-shadow: none;
+            transform: translateY(-2px);
         }
 
         /* dark CTA variant for body sections */
@@ -575,11 +601,13 @@
         }
 
         .hero .cta-note {
-            max-width: 620px; margin: 40px auto 0;
-            font-size: 0.98rem; line-height: 1.6;
+            max-width: 600px; margin: 34px auto 0;
+            font-size: 0.98rem; line-height: 1.65;
+            text-wrap: pretty;
             color: rgba(255,255,255,0.85);
         }
         /* --- NOW PLAYING (experiment) --- */
+        @media (max-width: 900px) { .np { display: none !important; } }
         .np {
             position: fixed; left: 18px; bottom: 18px; z-index: 2000;
             background: var(--ink); color: var(--white); border-radius: 14px;
@@ -811,8 +839,13 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero { padding: 130px 1.5rem 70px; }
+            .hero { padding: 120px 1.5rem 48px; }
             .hero h1 { font-size: 2.3rem; }
+            .hero-counter { font-size: 1.15rem; margin-bottom: 24px; }
+            .hero-ctas { gap: 10px; }
+            .hero-ctas .cta-button { padding: 0.95rem 1.8rem; font-size: 0.95rem; }
+            .hero .cta-note { font-size: 0.92rem; margin-top: 28px; }
+            .hero-proof { font-size: 0.78rem; margin-top: 16px; }
             .hero p { font-size: 1.05rem; }
             .contact-grid { grid-template-columns: 1fr; gap: 24px; }
             .serve-grid, .services-grid { grid-template-columns: 1fr; }
@@ -863,8 +896,13 @@
         <div class="hero-inner">
             <span class="hero-est">Est. 2023</span>
             <h1>Practical AI for Baltimore Businesses</h1>
-            <a href="#contact" class="cta-button">Talk to us</a>
-            <p class="cta-note">Starts with a free 90-minute audit. If there's something worth building, you get a written scope and price before any work begins. About half our audits end with "you don't need this."</p>
+            <p class="hero-counter">About half our audits end with &ldquo;you don&rsquo;t need this.&rdquo;</p>
+            <div class="hero-ctas">
+                <a href="#contact" class="cta-button">Book the 90-minute audit</a>
+                <a href="https://calendar.app.google/wSuGQT5yDA2UqEXb6" target="_blank" rel="noopener" class="cta-button cta-button-ghost">Or start with 15 minutes</a>
+            </div>
+            <p class="cta-note">Ninety minutes with your team, walking the actual process. We&rsquo;ll come look at it. If something&rsquo;s worth building, you get a written scope and price first.</p>
+            <p class="hero-proof">NIH chemistry data science &middot; federal cloud &middot; AWS at scale &middot; <a href="demos/eval-lab.html">watch our evals run live</a></p>
         </div>
     </section>
 
@@ -1059,6 +1097,7 @@
                             <label for="service">What do you need help with?</label>
                             <select id="service" name="service">
                                 <option value="">Choose one...</option>
+                                <option value="intro">Just a 15-minute intro call</option>
                                 <option value="strategy">AI Strategy & Planning</option>
                                 <option value="documents">Document Processing</option>
                                 <option value="assistant">AI Assistant / Chatbot</option>
@@ -1234,6 +1273,8 @@
     </div>
     <script>
     (function () {
+        var NP_ENABLED = false;   // set true to bring the now-playing experiment back
+        if (!NP_ENABLED) return;
         var VID = 'oiusDE0KND8';
         var np = document.getElementById('np'), hint = document.getElementById('npHint');
         var player, ready = false, started = false, muted = false;
